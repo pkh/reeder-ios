@@ -1,0 +1,287 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7F761B7517779C3F00554C0F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F761B7417779C3F00554C0F /* UIKit.framework */; };
+		7F761B7717779C3F00554C0F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F761B7617779C3F00554C0F /* Foundation.framework */; };
+		7F761B7917779C3F00554C0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F761B7817779C3F00554C0F /* CoreGraphics.framework */; };
+		7F761B7F17779C3F00554C0F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F761B7D17779C3F00554C0F /* InfoPlist.strings */; };
+		7F761B8117779C3F00554C0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F761B8017779C3F00554C0F /* main.m */; };
+		7F761B8517779C3F00554C0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F761B8417779C3F00554C0F /* AppDelegate.m */; };
+		7F761B8717779C3F00554C0F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F761B8617779C3F00554C0F /* Default.png */; };
+		7F761B8917779C3F00554C0F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F761B8817779C3F00554C0F /* Default@2x.png */; };
+		7F761B8B17779C3F00554C0F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F761B8A17779C3F00554C0F /* Default-568h@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7F761B7117779C3F00554C0F /* reeder-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "reeder-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F761B7417779C3F00554C0F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7F761B7617779C3F00554C0F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7F761B7817779C3F00554C0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7F761B7C17779C3F00554C0F /* reeder-ios-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "reeder-ios-Info.plist"; sourceTree = "<group>"; };
+		7F761B7E17779C3F00554C0F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7F761B8017779C3F00554C0F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7F761B8217779C3F00554C0F /* reeder-ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "reeder-ios-Prefix.pch"; sourceTree = "<group>"; };
+		7F761B8317779C3F00554C0F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7F761B8417779C3F00554C0F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7F761B8617779C3F00554C0F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		7F761B8817779C3F00554C0F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		7F761B8A17779C3F00554C0F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7F761B6E17779C3F00554C0F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F761B7517779C3F00554C0F /* UIKit.framework in Frameworks */,
+				7F761B7717779C3F00554C0F /* Foundation.framework in Frameworks */,
+				7F761B7917779C3F00554C0F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7F761B6817779C3F00554C0F = {
+			isa = PBXGroup;
+			children = (
+				7F761B7A17779C3F00554C0F /* reeder-ios */,
+				7F761B7317779C3F00554C0F /* Frameworks */,
+				7F761B7217779C3F00554C0F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7F761B7217779C3F00554C0F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F761B7117779C3F00554C0F /* reeder-ios.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7F761B7317779C3F00554C0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7F761B7417779C3F00554C0F /* UIKit.framework */,
+				7F761B7617779C3F00554C0F /* Foundation.framework */,
+				7F761B7817779C3F00554C0F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7F761B7A17779C3F00554C0F /* reeder-ios */ = {
+			isa = PBXGroup;
+			children = (
+				7F761B8317779C3F00554C0F /* AppDelegate.h */,
+				7F761B8417779C3F00554C0F /* AppDelegate.m */,
+				7F761B7B17779C3F00554C0F /* Supporting Files */,
+			);
+			path = "reeder-ios";
+			sourceTree = "<group>";
+		};
+		7F761B7B17779C3F00554C0F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7F761B7C17779C3F00554C0F /* reeder-ios-Info.plist */,
+				7F761B7D17779C3F00554C0F /* InfoPlist.strings */,
+				7F761B8017779C3F00554C0F /* main.m */,
+				7F761B8217779C3F00554C0F /* reeder-ios-Prefix.pch */,
+				7F761B8617779C3F00554C0F /* Default.png */,
+				7F761B8817779C3F00554C0F /* Default@2x.png */,
+				7F761B8A17779C3F00554C0F /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7F761B7017779C3F00554C0F /* reeder-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F761B8E17779C3F00554C0F /* Build configuration list for PBXNativeTarget "reeder-ios" */;
+			buildPhases = (
+				7F761B6D17779C3F00554C0F /* Sources */,
+				7F761B6E17779C3F00554C0F /* Frameworks */,
+				7F761B6F17779C3F00554C0F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "reeder-ios";
+			productName = "reeder-ios";
+			productReference = 7F761B7117779C3F00554C0F /* reeder-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7F761B6917779C3F00554C0F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = pkh;
+			};
+			buildConfigurationList = 7F761B6C17779C3F00554C0F /* Build configuration list for PBXProject "reeder-ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7F761B6817779C3F00554C0F;
+			productRefGroup = 7F761B7217779C3F00554C0F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7F761B7017779C3F00554C0F /* reeder-ios */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7F761B6F17779C3F00554C0F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F761B7F17779C3F00554C0F /* InfoPlist.strings in Resources */,
+				7F761B8717779C3F00554C0F /* Default.png in Resources */,
+				7F761B8917779C3F00554C0F /* Default@2x.png in Resources */,
+				7F761B8B17779C3F00554C0F /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7F761B6D17779C3F00554C0F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F761B8117779C3F00554C0F /* main.m in Sources */,
+				7F761B8517779C3F00554C0F /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7F761B7D17779C3F00554C0F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F761B7E17779C3F00554C0F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7F761B8C17779C3F00554C0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7F761B8D17779C3F00554C0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7F761B8F17779C3F00554C0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "reeder-ios/reeder-ios-Prefix.pch";
+				INFOPLIST_FILE = "reeder-ios/reeder-ios-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7F761B9017779C3F00554C0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "reeder-ios/reeder-ios-Prefix.pch";
+				INFOPLIST_FILE = "reeder-ios/reeder-ios-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7F761B6C17779C3F00554C0F /* Build configuration list for PBXProject "reeder-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F761B8C17779C3F00554C0F /* Debug */,
+				7F761B8D17779C3F00554C0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F761B8E17779C3F00554C0F /* Build configuration list for PBXNativeTarget "reeder-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F761B8F17779C3F00554C0F /* Debug */,
+				7F761B9017779C3F00554C0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7F761B6917779C3F00554C0F /* Project object */;
+}
