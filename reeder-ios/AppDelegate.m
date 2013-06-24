@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import "User.h"
+#import "LoginViewController.h"
+#import "RootViewController.h"
+
 
 
 @implementation AppDelegate
@@ -28,8 +31,28 @@
     
     //[self attemptTestLogin];
     
-    NSLog(@"username: %@",[[User currentUser] name]);
-    NSLog(@"api_token: %@",[[User currentUser] apiToken]);
+    if ([[User currentUser] isLoggedIn]) {
+        NSLog(@"user IS logged in");
+        
+        NSLog(@"user id: %@",[[[User currentUser] userID] stringValue]);
+        NSLog(@"email: %@",[[User currentUser] email]);
+        NSLog(@"api_token: %@",[[User currentUser] apiToken]);
+        
+        
+        RootViewController *rvc = [[RootViewController alloc] init];
+        
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:rvc];
+        self.window.rootViewController = navController;
+        
+    } else {
+        NSLog(@"user is NOT logged in");
+        
+        LoginViewController *lvc = [[LoginViewController alloc] init];
+        self.window.rootViewController = lvc;
+        
+    }
+    
+
     
     
     self.window.backgroundColor = [UIColor whiteColor];

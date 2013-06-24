@@ -89,9 +89,7 @@
 }
 
 
-#pragma mark - Login/Update User
-
-#pragma mark - Login
+#pragma mark - Login/Update/Authenticate User
 
 + (void)loginWithName:(NSString *)name emailAddress:(NSString *)email password:(NSString *)password andDelegate:(id)delegate {
     
@@ -208,7 +206,13 @@
     
 }
 
-
+- (BOOL)isLoggedIn {
+    if ([self userID] && [self email] && [self apiToken]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
 
 
 

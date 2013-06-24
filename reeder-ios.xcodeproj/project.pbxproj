@@ -20,6 +20,8 @@
 		7FD7AF7E1777A166008029EF /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD7AF7D1777A166008029EF /* User.m */; };
 		7FD7AF8017789EB1008029EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD7AF7F17789EB1008029EF /* SystemConfiguration.framework */; };
 		7FD7AF8217789EB7008029EF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD7AF8117789EB7008029EF /* MobileCoreServices.framework */; };
+		7FD7AF851778BA89008029EF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD7AF841778BA89008029EF /* LoginViewController.m */; };
+		7FD7AF881778C25F008029EF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD7AF871778C25F008029EF /* RootViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,10 @@
 		7FD7AF7D1777A166008029EF /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7FD7AF7F17789EB1008029EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7FD7AF8117789EB7008029EF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		7FD7AF831778BA89008029EF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		7FD7AF841778BA89008029EF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		7FD7AF861778C25F008029EF /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		7FD7AF871778C25F008029EF /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		972FF7A5F6E247E4A6B75B3F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -97,6 +103,10 @@
 			children = (
 				7F761B8317779C3F00554C0F /* AppDelegate.h */,
 				7F761B8417779C3F00554C0F /* AppDelegate.m */,
+				7FD7AF831778BA89008029EF /* LoginViewController.h */,
+				7FD7AF841778BA89008029EF /* LoginViewController.m */,
+				7FD7AF861778C25F008029EF /* RootViewController.h */,
+				7FD7AF871778C25F008029EF /* RootViewController.m */,
 				7FD7AF7C1777A166008029EF /* User.h */,
 				7FD7AF7D1777A166008029EF /* User.m */,
 				7F761B7B17779C3F00554C0F /* Supporting Files */,
@@ -219,6 +229,8 @@
 				7F761B8117779C3F00554C0F /* main.m in Sources */,
 				7F761B8517779C3F00554C0F /* AppDelegate.m in Sources */,
 				7FD7AF7E1777A166008029EF /* User.m in Sources */,
+				7FD7AF851778BA89008029EF /* LoginViewController.m in Sources */,
+				7FD7AF881778C25F008029EF /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

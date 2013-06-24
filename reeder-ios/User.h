@@ -24,5 +24,6 @@
 + (void)loginWithName:(NSString *)name emailAddress:(NSString *)email password:(NSString *)password andDelegate:(id)delegate;
 + (void)authenticateWithEmail:(NSString *)email andPassword:(NSString *)password withDelegate:(id)delegate;
 
+- (BOOL)isLoggedIn;
 
 @end
