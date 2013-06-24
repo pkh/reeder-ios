@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "User.h"
+
 
 @implementation AppDelegate
 
@@ -14,6 +16,22 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    // ---------------------------------------------------
+    // Set up RestKit
+    // ---------------------------------------------------
+#warning TESTING API ENDPOINT
+    [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://reeder.doejoapp.com/api/"]];    // development (staging) api endpoint
+    
+    
+    
+    
+    //[self attemptTestLogin];
+    
+    NSLog(@"username: %@",[[User currentUser] name]);
+    NSLog(@"api_token: %@",[[User currentUser] apiToken]);
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
@@ -44,6 +62,15 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+#pragma mark - Testing
+
+- (void)attemptTestLogin {
+    
+    //[User loginWithName:@"pkh" emailAddress:@"patrick@doejo.com" password:@"password" andDelegate:nil];   
+    //[User authenticateWithEmail:@"patrick@doejo.com" andPassword:@"password" withDelegate:nil];
 }
 
 @end

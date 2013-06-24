@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <RestKit/RestKit.h>
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
