@@ -10,14 +10,18 @@
 #import <FlatUIKit/FUIButton.h>
 #import <FlatUIKit/UIColor+FlatUI.h>
 #import <FlatUIKit/UIFont+FlatUI.h>
+#import "User.h"
+#import "RootViewController.h"
+#import "AppDelegate.h"
 
 
-#define kReederLabelFrame CGRectMake(10, 132, 300, 44)
 
-#define kLeftButtonFrame_Up CGRectMake(10, 220, 145, 44)
-#define kLeftButtonFrame_Down CGRectMake(10, 380, 145, 44)
-#define kRightButtonFrame_Up CGRectMake(165, 220, 145, 44)
-#define kRightButtonFrame_Down CGRectMake(165, 380, 145, 44)
+#define kReederLabelFrame CGRectMake(10, 10, 300, 44)
+
+#define kLeftButtonFrame_Up CGRectMake(10, 88, 145, 44)
+#define kLeftButtonFrame_Down CGRectMake(10, 140, 145, 44)
+#define kRightButtonFrame_Up CGRectMake(165, 88, 145, 44)
+#define kRightButtonFrame_Down CGRectMake(165, 140, 145, 44)
 
 
 @interface LoginViewController ()
@@ -182,48 +186,24 @@
 
 #pragma mark - Button Actions
 
-- (void)leftButtonAction:(id)sender {
+- (void)leftButtonAction:(id)sender {   // Create User
     NSLog(@"left button");
     
     if (self.buttonsAreLowered && [self.leftButton.titleLabel.text isEqualToString:@"Cancel"]) {
         // --------------------------------------------------
         // RETURN EVERYTHING TO DEFAULT POSITION AND LABELS
         // --------------------------------------------------
-        [UIView animateWithDuration:0.333 animations:^() {
-            
-            self.leftButton.frame = kLeftButtonFrame_Up;
-            self.rightButton.frame = kRightButtonFrame_Up;
-
-        } completion:^(BOOL finished) {
-            
-            [self.leftButton setTitle:@"Create User" forState:UIControlStateNormal];
-            [self.rightButton setTitle:@"Log In" forState:UIControlStateNormal];
-            self.leftButton.buttonColor = [UIColor turquoiseColor];
-            self.leftButton.shadowColor = [UIColor greenSeaColor];
-            
-            self.buttonsAreLowered = NO;
-        }];
+        [self raiseButtons];
+        
+        [self.emailTextField resignFirstResponder];
+        [self.passwordTextField resignFirstResponder];
+        [self.nameTextField resignFirstResponder];
         
     } else {
         
         if (!self.buttonsAreLowered) {
-            [UIView animateWithDuration:0.333 animations:^() {
-                
-                self.leftButton.frame = kLeftButtonFrame_Down;
-                self.rightButton.frame = kRightButtonFrame_Down;
-
-            } completion:^(BOOL finished) {
-                
-                //self.emailTextField = [[UITextField alloc] init];
-                [self.leftButton setTitle:@"Cancel" forState:UIControlStateNormal];
-                [self.rightButton setTitle:@"Create User" forState:UIControlStateNormal];
-                self.leftButton.buttonColor = [UIColor alizarinColor];
-                self.leftButton.shadowColor = [UIColor pomegranateColor];
-                
-                self.buttonsAreLowered = YES;
-                
-                [self showTextFieldsWithNameField:YES];
-            }];
+            [self lowerButtonsAndCreateUser:YES];
+            
         }
         
     }
@@ -234,14 +214,71 @@
     NSLog(@"log in");
     
     if (!self.buttonsAreLowered) {
+        [self lowerButtonsAndCreateUser:NO];
         
-        [UIView animateWithDuration:0.333 animations:^() {
+    } else if (self.buttonsAreLowered) {
+        // DO the action
+        
+        if ([self.rightButton.titleLabel.text isEqualToString:@"Log In"]) {
+            NSLog(@"Log in user: %@",self.emailTextField.text);
+            NSLog(@"And password: %@",self.passwordTextField);
             
+            [User authenticateWithEmail:self.emailTextField.text andPassword:self.passwordTextField.text withDelegate:self];
+            
+        } else if ( [self.rightButton.titleLabel.text isEqualToString:@"Create User"]) {
+            NSLog(@"Create User: %@", self.nameTextField.text);
+            
+            [User createNewUserWithName:self.nameTextField.text emailAddress:self.emailTextField.text password:self.passwordTextField.text andDelegate:self];
+        }
+        
+        [self.emailTextField resignFirstResponder];
+        [self.passwordTextField resignFirstResponder];
+        
+        
+    } else {
+        NSLog(@"buttons are already lowered");
+        [self raiseButtons];
+        
+    }
+    
+    
+}
+
+
+
+
+
+- (void)lowerButtonsAndCreateUser:(BOOL)shouldCreateUser {
+    
+    [UIView animateWithDuration:0.333 animations:^() {
+        
+        if (shouldCreateUser == NO) {
             self.leftButton.frame = kLeftButtonFrame_Down;
             self.rightButton.frame = kRightButtonFrame_Down;
-
-        } completion:^(BOOL finished) {
+        } else {
+            CGRect lButtonFrame = kLeftButtonFrame_Down;
+            lButtonFrame.origin.y = lButtonFrame.origin.y + 40;
+            self.leftButton.frame = lButtonFrame;
             
+            CGRect rButtonFrame = kRightButtonFrame_Down;
+            rButtonFrame.origin.y = rButtonFrame.origin.y + 40;
+            self.rightButton.frame = rButtonFrame;
+        }
+        
+    } completion:^(BOOL finished) {
+        
+        if (shouldCreateUser) {
+            //self.emailTextField = [[UITextField alloc] init];
+            [self.leftButton setTitle:@"Cancel" forState:UIControlStateNormal];
+            [self.rightButton setTitle:@"Create User" forState:UIControlStateNormal];
+            self.leftButton.buttonColor = [UIColor alizarinColor];
+            self.leftButton.shadowColor = [UIColor pomegranateColor];
+            
+            self.buttonsAreLowered = YES;
+            
+            [self showTextFieldsWithNameField:YES];
+            
+        } else {
             //self.emailTextField = [[UITextField alloc] init];
             [self.leftButton setTitle:@"Cancel" forState:UIControlStateNormal];
             self.leftButton.buttonColor = [UIColor alizarinColor];
@@ -251,41 +288,71 @@
             
             [self showTextFieldsWithNameField:NO];
             
-        }];
+            
+        }
+
+    }];
+    
+    
+}
+
+- (void)raiseButtons {
+    
+    [UIView animateWithDuration:0.333 animations:^() {
         
-    } else {
-        NSLog(@"buttons are already lowered");
-    }
-    
-    
+        self.emailTextField.alpha = 0;
+        self.passwordTextField.alpha = 0;
+        self.nameTextField.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:0.333 animations:^() {
+            self.leftButton.frame = kLeftButtonFrame_Up;
+            self.rightButton.frame = kRightButtonFrame_Up;
+        } completion:^(BOOL finished) {
+            [self.leftButton setTitle:@"Create User" forState:UIControlStateNormal];
+            [self.rightButton setTitle:@"Log In" forState:UIControlStateNormal];
+            self.leftButton.buttonColor = [UIColor turquoiseColor];
+            self.leftButton.shadowColor = [UIColor greenSeaColor];
+            
+            self.buttonsAreLowered = NO;
+        }];
+
+    }];
     
 }
 
 
 - (void)showTextFieldsWithNameField:(BOOL)showNameField {
- 
+    
     self.emailTextField = [[UITextField alloc] init];
-    self.emailTextField.backgroundColor = [UIColor redColor];
-    self.emailTextField.frame = CGRectMake(30, 190, 260, 30);
+    self.emailTextField.backgroundColor = [UIColor cloudsColor];
+    self.emailTextField.frame = CGRectMake(30, 58, 260, 26);
     self.emailTextField.placeholder = @"Email Address...";
+    self.emailTextField.keyboardType = UIKeyboardTypeEmailAddress;
     self.emailTextField.delegate = self;
+    self.emailTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.emailTextField];
     
+    
     self.passwordTextField = [[UITextField alloc] init];
-    self.passwordTextField.backgroundColor = [UIColor greenColor];
-    self.passwordTextField.frame = CGRectMake(30, 230, 260, 30);
+    self.passwordTextField.backgroundColor = [UIColor cloudsColor];
+    self.passwordTextField.frame = CGRectMake(30, 94, 260, 26);
     self.passwordTextField.placeholder = @"Password...";
     self.passwordTextField.delegate = self;
     [self.passwordTextField setSecureTextEntry:YES];
+    self.passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.passwordTextField];
 
+    
     if (showNameField == YES) {
         self.nameTextField = [[UITextField alloc] init];
-        self.nameTextField.frame = CGRectMake(30, 284, 260, 30);
+        self.nameTextField.backgroundColor = [UIColor cloudsColor];
+        self.nameTextField.frame = CGRectMake(30, 134, 260, 26);
         self.nameTextField.placeholder = @"Username...";
-        self.nameTextField.translatesAutoresizingMaskIntoConstraints = NO;
         self.nameTextField.delegate = self;
         self.nameTextField.alpha = 0;
+        self.nameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         [self.view addSubview:self.nameTextField];
         
     }
@@ -303,5 +370,43 @@
     
     
 }
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    
+    
+}
+
+
+#pragma mark - Backend Actions
+
+- (void)successfullyLoggedIn {
+    NSLog(@"logged in successfully!");
+    NSLog(@"username: %@",[[User currentUser] name]);
+    NSLog(@"apiToken: %@",[[User currentUser] apiToken]);
+    
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [app loadRootViewController];
+    
+}
+
+- (void)loginFailedWithError:(NSError *)error {
+    NSLog(@"login failed: %@",[error localizedDescription]);
+}
+
+- (void)createNewUserSuccessful {
+    NSLog(@"createNewUserSuccessful!");
+    NSLog(@"username: %@",[[User currentUser] name]);
+    NSLog(@"apiToken: %@",[[User currentUser] apiToken]);
+}
+
+- (void)createNewUserFailedWithError:(NSError *)error {
+    NSLog(@"createNewUserFailedWithError failed: %@",[error localizedDescription]);
+}
+
+
+
+
 
 @end

@@ -39,10 +39,7 @@
         NSLog(@"api_token: %@",[[User currentUser] apiToken]);
         
         
-        RootViewController *rvc = [[RootViewController alloc] init];
-        
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:rvc];
-        self.window.rootViewController = navController;
+        [self loadRootViewController];
         
     } else {
         NSLog(@"user is NOT logged in");
@@ -87,6 +84,18 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - Custom Methods
+
+- (void)loadRootViewController {
+    
+    RootViewController *rvc = [[RootViewController alloc] init];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:rvc];
+    self.window.rootViewController = navController;
+    
+}
+
+
 
 #pragma mark - Testing
 
@@ -95,5 +104,8 @@
     //[User loginWithName:@"pkh" emailAddress:@"patrick@doejo.com" password:@"password" andDelegate:nil];   
     //[User authenticateWithEmail:@"patrick@doejo.com" andPassword:@"password" withDelegate:nil];
 }
+
+
+
 
 @end

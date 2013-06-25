@@ -14,4 +14,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)loadRootViewController;
+
 @end

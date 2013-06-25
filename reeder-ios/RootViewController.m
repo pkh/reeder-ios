@@ -7,6 +7,8 @@
 //
 
 #import "RootViewController.h"
+#import <FlatUIKit/UIColor+FlatUI.h>
+
 
 @interface RootViewController ()
 
@@ -26,6 +28,7 @@
 - (void)loadView {
     [super loadView];
     
+    [self.view setBackgroundColor:[UIColor belizeHoleColor]];
     
 }
 

@@ -7,6 +7,8 @@
 //
 
 #import "User.h"
+#import "LoginViewController.h"
+
 
 
 #define kFileName @"User.dat"
@@ -91,7 +93,7 @@
 
 #pragma mark - Login/Update/Authenticate User
 
-+ (void)loginWithName:(NSString *)name emailAddress:(NSString *)email password:(NSString *)password andDelegate:(id)delegate {
++ (void)createNewUserWithName:(NSString *)name emailAddress:(NSString *)email password:(NSString *)password andDelegate:(id)delegate {
     
     RKObjectMapping *newUserMapping = [User objectMapping];
     RKObjectMapping *authMapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
@@ -130,21 +132,21 @@
         
         [newUser save];
         
-        /*
-        if ([delegate respondsToSelector:@selector()]) {
-            
+        
+        if ([delegate respondsToSelector:@selector(createNewUserSuccessful)]) {
+            [delegate createNewUserSuccessful];
         }
-        */
+        
 
     } failure:^ (RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"FAILURE");
         NSLog(@"---------");
         NSLog(@"%@",[error localizedFailureReason]);
-        /*
-        if ([delegate respondsToSelector:@selector()]) {
-            
+        
+        if ([delegate respondsToSelector:@selector(createNewUserFailedWithError:)]) {
+            [delegate createNewUserFailedWithError:error];
         }
-        */
+        
     }];
     
 }
@@ -186,21 +188,21 @@
         
         [newUser save];
         
-        /*
-         if ([delegate respondsToSelector:@selector()]) {
-         
-         }
-         */
+        
+        if ([delegate respondsToSelector:@selector(successfullyLoggedIn)]) {
+            [delegate successfullyLoggedIn];
+        }
+        
         
     } failure:^ (RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"FAILURE");
         NSLog(@"---------");
         NSLog(@"%@",[error localizedFailureReason]);
-        /*
-         if ([delegate respondsToSelector:@selector()]) {
-         
-         }
-         */
+        
+        if ([delegate respondsToSelector:@selector(loginFailedWithError:)]) {
+            [delegate loginFailedWithError:error];
+        }
+        
     }];
     
     

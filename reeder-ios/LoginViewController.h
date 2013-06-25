@@ -10,4 +10,11 @@
 
 @interface LoginViewController : UIViewController <UITextFieldDelegate>
 
+
+- (void)successfullyLoggedIn;
+- (void)loginFailedWithError:(NSError *)error;
+
+- (void)createNewUserSuccessful;
+- (void)createNewUserFailedWithError:(NSError *)error;
+
 @end
