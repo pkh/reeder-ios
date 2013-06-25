@@ -28,6 +28,16 @@ install_resource()
       ;;
   esac
 }
+install_resource 'FlatUIKit/Resources/Lato-Black.ttf'
+install_resource 'FlatUIKit/Resources/Lato-BlackItalic.ttf'
+install_resource 'FlatUIKit/Resources/Lato-Bold.ttf'
+install_resource 'FlatUIKit/Resources/Lato-BoldItalic.ttf'
+install_resource 'FlatUIKit/Resources/Lato-Hairline.ttf'
+install_resource 'FlatUIKit/Resources/Lato-HairlineItalic.ttf'
+install_resource 'FlatUIKit/Resources/Lato-Italic.ttf'
+install_resource 'FlatUIKit/Resources/Lato-Light.ttf'
+install_resource 'FlatUIKit/Resources/Lato-LightItalic.ttf'
+install_resource 'FlatUIKit/Resources/Lato-Regular.ttf'
 
 rsync -avr --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rm "$RESOURCES_TO_COPY"

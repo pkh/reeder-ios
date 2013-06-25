@@ -51,11 +51,13 @@
     UIButton *createUserButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [createUserButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [createUserButton setTitle:@"Create User" forState:UIControlStateNormal];
+    [createUserButton addTarget:self action:@selector(createUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:createUserButton];
     
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [loginButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [loginButton setTitle:@"Log In" forState:UIControlStateNormal];
+    [loginButton addTarget:self action:@selector(loginButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
     
     
@@ -87,5 +89,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Button Actions
+
+- (void)createUserButtonAction:(id)sender {
+    NSLog(@"create user");
+}
+
+- (void)loginButtonAction:(id)sender {
+    NSLog(@"log in");
+}
+
 
 @end
