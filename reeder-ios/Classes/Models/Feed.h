@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
 //#import <CoreData/CoreData.h>
 
 
 //@interface Feed : NSManagedObject
-@interface Feed : NSObject
+@interface Feed : NSObject <NSCoding>
 
 
 @property (nonatomic, retain) NSDate * feedCreatedDate;
@@ -28,7 +29,7 @@
 @property (nonatomic, retain) NSMutableArray *feedPosts;
 
 
-
++ (void)subscribeToNewFeedWithFeedURL:(NSString *)url andDelegate:(id)delegate;
 
 
 @end

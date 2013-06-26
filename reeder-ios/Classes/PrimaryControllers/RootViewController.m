@@ -13,6 +13,8 @@
 
 #import "Utils.h"
 #import "SettingsViewController.h"
+#import "Feed.h"
+#import "AddFeedViewController.h"
 
 
 #define kTableViewFrame CGRectMake(0, 0, 320, self.view.frame.size.height)
@@ -91,6 +93,13 @@
 }
 
 - (void)addButtonAction:(id)sender {
+    
+    AddFeedViewController *afvc = [[AddFeedViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:afvc];
+    [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:navController animated:YES completion:nil];
+    
     
 }
 

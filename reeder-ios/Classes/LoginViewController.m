@@ -92,8 +92,8 @@
     //UIButton *createUserButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.leftButton = [FUIButton buttonWithType:UIButtonTypeCustom];
     self.leftButton.frame = CGRectZero;
-    self.leftButton.buttonColor = [UIColor turquoiseColor];
-    self.leftButton.shadowColor = [UIColor greenSeaColor];
+    self.leftButton.buttonColor = [UIColor asbestosColor];
+    self.leftButton.shadowColor = [UIColor wetAsphaltColor];
     self.leftButton.shadowHeight = 3.0f;
     self.leftButton.cornerRadius = 6.0f;
     self.leftButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
@@ -108,8 +108,8 @@
     //UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.rightButton = [FUIButton buttonWithType:UIButtonTypeCustom];
     self.rightButton.frame = CGRectZero;
-    self.rightButton.buttonColor = [UIColor turquoiseColor];
-    self.rightButton.shadowColor = [UIColor greenSeaColor];
+    self.rightButton.buttonColor = [UIColor asbestosColor];
+    self.rightButton.shadowColor = [UIColor wetAsphaltColor];
     self.rightButton.shadowHeight = 3.0f;
     self.rightButton.cornerRadius = 6.0f;
     self.rightButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
@@ -374,8 +374,8 @@
         } completion:^(BOOL finished) {
             [self.leftButton setTitle:@"Create User" forState:UIControlStateNormal];
             [self.rightButton setTitle:@"Log In" forState:UIControlStateNormal];
-            self.leftButton.buttonColor = [UIColor turquoiseColor];
-            self.leftButton.shadowColor = [UIColor greenSeaColor];
+            self.leftButton.buttonColor = [UIColor asbestosColor];
+            self.leftButton.shadowColor = [UIColor wetAsphaltColor];
             
             self.buttonsAreLowered = NO;
         }];
@@ -467,8 +467,6 @@
 
 - (void)createNewUserSuccessful {
     NSLog(@"createNewUserSuccessful!");
-    NSLog(@"username: %@",[[User currentUser] name]);
-    NSLog(@"apiToken: %@",[[User currentUser] apiToken]);
     
     [SVProgressHUD dismiss];
     

@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
 //#import <CoreData/CoreData.h>
 
 @class Feed;
 
 //@interface Post : NSManagedObject
-@interface Post : NSObject
+@interface Post : NSObject <NSCoding>
 
 @property (nonatomic, retain) NSString * postAuthor;
 @property (nonatomic, retain) NSNumber * postBookmarked;
@@ -23,6 +24,6 @@
 @property (nonatomic, retain) NSDate * postPublishedDate;
 @property (nonatomic, retain) NSDate * postReadDate;
 @property (nonatomic, retain) NSString * postTitle;
-//@property (nonatomic, retain) Feed *parentFeed;
+@property (nonatomic, retain) Feed *parentFeed;
 
 @end

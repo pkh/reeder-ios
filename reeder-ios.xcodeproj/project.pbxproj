@@ -23,6 +23,7 @@
 		7F761B8717779C3F00554C0F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F761B8617779C3F00554C0F /* Default.png */; };
 		7F761B8917779C3F00554C0F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F761B8817779C3F00554C0F /* Default@2x.png */; };
 		7F761B8B17779C3F00554C0F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F761B8A17779C3F00554C0F /* Default-568h@2x.png */; };
+		7FD4A8D7177B873400715E02 /* AddFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4A8D6177B873400715E02 /* AddFeedViewController.m */; };
 		7FD7AF8017789EB1008029EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD7AF7F17789EB1008029EF /* SystemConfiguration.framework */; };
 		7FD7AF8217789EB7008029EF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD7AF8117789EB7008029EF /* MobileCoreServices.framework */; };
 		7FE6ABA7177B5F0B00780252 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6ABA6177B5F0B00780252 /* SettingsViewController.m */; };
@@ -54,6 +55,8 @@
 		7F761B8617779C3F00554C0F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		7F761B8817779C3F00554C0F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		7F761B8A17779C3F00554C0F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		7FD4A8D5177B873400715E02 /* AddFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFeedViewController.h; sourceTree = "<group>"; };
+		7FD4A8D6177B873400715E02 /* AddFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFeedViewController.m; sourceTree = "<group>"; };
 		7FD7AF7F17789EB1008029EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7FD7AF8117789EB7008029EF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		7FE6ABA5177B5F0B00780252 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -112,6 +115,8 @@
 				7F1C8E88177A482F0054395F /* RootViewController.m */,
 				7FE6ABA5177B5F0B00780252 /* SettingsViewController.h */,
 				7FE6ABA6177B5F0B00780252 /* SettingsViewController.m */,
+				7FD4A8D5177B873400715E02 /* AddFeedViewController.h */,
+				7FD4A8D6177B873400715E02 /* AddFeedViewController.m */,
 			);
 			path = PrimaryControllers;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				7F0CC88F177B4562001EAE51 /* Feed.m in Sources */,
 				7F0CC892177B456E001EAE51 /* Post.m in Sources */,
 				7FE6ABA7177B5F0B00780252 /* SettingsViewController.m in Sources */,
+				7FD4A8D7177B873400715E02 /* AddFeedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

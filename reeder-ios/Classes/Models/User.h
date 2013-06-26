@@ -10,7 +10,7 @@
 #import <RestKit/RestKit.h>
 
 
-@interface User : NSObject
+@interface User : NSObject <NSCoding>
 
 @property (nonatomic) NSNumber *userID;
 @property (nonatomic) NSString *name;
