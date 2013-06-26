@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		05774CDC09E24459AC71C946 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 972FF7A5F6E247E4A6B75B3F /* libPods.a */; };
+		7F0CC88F177B4562001EAE51 /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0CC88E177B4562001EAE51 /* Feed.m */; };
+		7F0CC892177B456E001EAE51 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0CC891177B456E001EAE51 /* Post.m */; };
 		7F1C8E89177A482F0054395F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1C8E82177A482F0054395F /* LoginViewController.m */; };
 		7F1C8E8A177A482F0054395F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1C8E85177A482F0054395F /* User.m */; };
 		7F1C8E8B177A482F0054395F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1C8E88177A482F0054395F /* RootViewController.m */; };
+		7F5796A7177B401D0090E1E3 /* ReederDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F5796A5177B401D0090E1E3 /* ReederDataModel.xcdatamodeld */; };
 		7F761B7517779C3F00554C0F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F761B7417779C3F00554C0F /* UIKit.framework */; };
 		7F761B7717779C3F00554C0F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F761B7617779C3F00554C0F /* Foundation.framework */; };
 		7F761B7917779C3F00554C0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F761B7817779C3F00554C0F /* CoreGraphics.framework */; };
@@ -22,16 +25,22 @@
 		7F761B8B17779C3F00554C0F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F761B8A17779C3F00554C0F /* Default-568h@2x.png */; };
 		7FD7AF8017789EB1008029EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD7AF7F17789EB1008029EF /* SystemConfiguration.framework */; };
 		7FD7AF8217789EB7008029EF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD7AF8117789EB7008029EF /* MobileCoreServices.framework */; };
+		7FE6ABA7177B5F0B00780252 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE6ABA6177B5F0B00780252 /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		60C05D0FB8894529A8618F42 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		7F0CC88D177B4562001EAE51 /* Feed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feed.h; sourceTree = "<group>"; };
+		7F0CC88E177B4562001EAE51 /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
+		7F0CC890177B456E001EAE51 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		7F0CC891177B456E001EAE51 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		7F1C8E81177A482F0054395F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		7F1C8E82177A482F0054395F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		7F1C8E84177A482F0054395F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		7F1C8E85177A482F0054395F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		7F1C8E87177A482F0054395F /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		7F1C8E88177A482F0054395F /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		7F5796A6177B401D0090E1E3 /* ReederDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReederDataModel.xcdatamodel; sourceTree = "<group>"; };
 		7F761B7117779C3F00554C0F /* reeder-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "reeder-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F761B7417779C3F00554C0F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7F761B7617779C3F00554C0F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -47,6 +56,9 @@
 		7F761B8A17779C3F00554C0F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		7FD7AF7F17789EB1008029EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7FD7AF8117789EB7008029EF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		7FE6ABA5177B5F0B00780252 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		7FE6ABA6177B5F0B00780252 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		7FE6ABA8177B60E400780252 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		972FF7A5F6E247E4A6B75B3F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -74,6 +86,7 @@
 				7F1C8E82177A482F0054395F /* LoginViewController.m */,
 				7F1C8E86177A482F0054395F /* PrimaryControllers */,
 				7F1C8E83177A482F0054395F /* Models */,
+				7FE6ABA8177B60E400780252 /* Utils.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -83,6 +96,11 @@
 			children = (
 				7F1C8E84177A482F0054395F /* User.h */,
 				7F1C8E85177A482F0054395F /* User.m */,
+				7F5796A5177B401D0090E1E3 /* ReederDataModel.xcdatamodeld */,
+				7F0CC88D177B4562001EAE51 /* Feed.h */,
+				7F0CC88E177B4562001EAE51 /* Feed.m */,
+				7F0CC890177B456E001EAE51 /* Post.h */,
+				7F0CC891177B456E001EAE51 /* Post.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -92,6 +110,8 @@
 			children = (
 				7F1C8E87177A482F0054395F /* RootViewController.h */,
 				7F1C8E88177A482F0054395F /* RootViewController.m */,
+				7FE6ABA5177B5F0B00780252 /* SettingsViewController.h */,
+				7FE6ABA6177B5F0B00780252 /* SettingsViewController.m */,
 			);
 			path = PrimaryControllers;
 			sourceTree = "<group>";
@@ -255,6 +275,10 @@
 				7F1C8E89177A482F0054395F /* LoginViewController.m in Sources */,
 				7F1C8E8A177A482F0054395F /* User.m in Sources */,
 				7F1C8E8B177A482F0054395F /* RootViewController.m in Sources */,
+				7F5796A7177B401D0090E1E3 /* ReederDataModel.xcdatamodeld in Sources */,
+				7F0CC88F177B4562001EAE51 /* Feed.m in Sources */,
+				7F0CC892177B456E001EAE51 /* Post.m in Sources */,
+				7FE6ABA7177B5F0B00780252 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +398,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7F5796A5177B401D0090E1E3 /* ReederDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7F5796A6177B401D0090E1E3 /* ReederDataModel.xcdatamodel */,
+			);
+			currentVersion = 7F5796A6177B401D0090E1E3 /* ReederDataModel.xcdatamodel */;
+			path = ReederDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7F761B6917779C3F00554C0F /* Project object */;
 }

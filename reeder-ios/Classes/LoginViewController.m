@@ -10,6 +10,8 @@
 #import <FlatUIKit/FUIButton.h>
 #import <FlatUIKit/UIColor+FlatUI.h>
 #import <FlatUIKit/UIFont+FlatUI.h>
+#import <FlatUIKit/FUIAlertView.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "User.h"
 #import "RootViewController.h"
 #import "AppDelegate.h"
@@ -195,6 +197,10 @@
         // --------------------------------------------------
         [self raiseButtons];
         
+        [self.emailTextField setText:@""];
+        [self.passwordTextField setText:@""];
+        [self.nameTextField setText:@""];
+        
         [self.emailTextField resignFirstResponder];
         [self.passwordTextField resignFirstResponder];
         [self.nameTextField resignFirstResponder];
@@ -211,7 +217,6 @@
 }
 
 - (void)rightButtonAction:(id)sender {
-    NSLog(@"log in");
     
     if (!self.buttonsAreLowered) {
         [self lowerButtonsAndCreateUser:NO];
@@ -221,18 +226,75 @@
         
         if ([self.rightButton.titleLabel.text isEqualToString:@"Log In"]) {
             NSLog(@"Log in user: %@",self.emailTextField.text);
-            NSLog(@"And password: %@",self.passwordTextField);
+            NSLog(@"And password: %@",self.passwordTextField.text);
             
-            [User authenticateWithEmail:self.emailTextField.text andPassword:self.passwordTextField.text withDelegate:self];
-            
+            if ([self loginValidateInputEmail:self.emailTextField.text andPassword:self.passwordTextField.text]) {
+                [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+                [User authenticateWithEmail:self.emailTextField.text andPassword:self.passwordTextField.text withDelegate:self];
+                
+            } else {
+                [self.emailTextField resignFirstResponder];
+                [self.passwordTextField resignFirstResponder];
+                if (self.nameTextField) {
+                    [self.nameTextField resignFirstResponder];
+                }
+                
+                FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Input Error" message:@"Make sure you enter text in all fields." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+                
+                alertView.titleLabel.textColor = [UIColor cloudsColor];
+                alertView.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+                alertView.messageLabel.textColor = [UIColor cloudsColor];
+                alertView.messageLabel.font = [UIFont flatFontOfSize:14];
+                alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
+                alertView.alertContainer.backgroundColor = [UIColor midnightBlueColor];
+                alertView.defaultButtonColor = [UIColor cloudsColor];
+                alertView.defaultButtonShadowColor = [UIColor asbestosColor];
+                alertView.defaultButtonFont = [UIFont boldFlatFontOfSize:16];
+                alertView.defaultButtonTitleColor = [UIColor asbestosColor];
+                [alertView show];
+                
+                return;
+            }
+        
         } else if ( [self.rightButton.titleLabel.text isEqualToString:@"Create User"]) {
             NSLog(@"Create User: %@", self.nameTextField.text);
             
-            [User createNewUserWithName:self.nameTextField.text emailAddress:self.emailTextField.text password:self.passwordTextField.text andDelegate:self];
+            if ([self createUserValidateInputEmail:self.emailTextField.text andPassword:self.passwordTextField.text andName:self.nameTextField.text]) {
+                
+                [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+                [User createNewUserWithName:self.nameTextField.text emailAddress:self.emailTextField.text password:self.passwordTextField.text andDelegate:self];
+                
+            } else {
+                [self.emailTextField resignFirstResponder];
+                [self.passwordTextField resignFirstResponder];
+                if (self.nameTextField) {
+                    [self.nameTextField resignFirstResponder];
+                }
+                
+                FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Input Error" message:@"Make sure you enter text in all fields." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+                
+                alertView.titleLabel.textColor = [UIColor cloudsColor];
+                alertView.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+                alertView.messageLabel.textColor = [UIColor cloudsColor];
+                alertView.messageLabel.font = [UIFont flatFontOfSize:14];
+                alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
+                alertView.alertContainer.backgroundColor = [UIColor midnightBlueColor];
+                alertView.defaultButtonColor = [UIColor cloudsColor];
+                alertView.defaultButtonShadowColor = [UIColor asbestosColor];
+                alertView.defaultButtonFont = [UIFont boldFlatFontOfSize:16];
+                alertView.defaultButtonTitleColor = [UIColor asbestosColor];
+                [alertView show];
+                
+                return;
+            }
+            
         }
         
         [self.emailTextField resignFirstResponder];
         [self.passwordTextField resignFirstResponder];
+        if (self.nameTextField) {
+            [self.nameTextField resignFirstResponder];
+        }
         
         
     } else {
@@ -330,6 +392,7 @@
     self.emailTextField.frame = CGRectMake(30, 58, 260, 26);
     self.emailTextField.placeholder = @"Email Address...";
     self.emailTextField.keyboardType = UIKeyboardTypeEmailAddress;
+    self.emailTextField.font = [UIFont flatFontOfSize:20];
     self.emailTextField.delegate = self;
     self.emailTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.emailTextField];
@@ -340,6 +403,7 @@
     self.passwordTextField.frame = CGRectMake(30, 94, 260, 26);
     self.passwordTextField.placeholder = @"Password...";
     self.passwordTextField.delegate = self;
+    self.passwordTextField.font = [UIFont flatFontOfSize:20];
     [self.passwordTextField setSecureTextEntry:YES];
     self.passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:self.passwordTextField];
@@ -351,6 +415,7 @@
         self.nameTextField.frame = CGRectMake(30, 134, 260, 26);
         self.nameTextField.placeholder = @"Username...";
         self.nameTextField.delegate = self;
+        self.nameTextField.font = [UIFont flatFontOfSize:20];
         self.nameTextField.alpha = 0;
         self.nameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         [self.view addSubview:self.nameTextField];
@@ -386,12 +451,17 @@
     NSLog(@"username: %@",[[User currentUser] name]);
     NSLog(@"apiToken: %@",[[User currentUser] apiToken]);
     
+    [SVProgressHUD dismiss];
+    
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [app loadRootViewController];
     
 }
 
 - (void)loginFailedWithError:(NSError *)error {
+    
+    [SVProgressHUD dismiss];
+    
     NSLog(@"login failed: %@",[error localizedDescription]);
 }
 
@@ -399,14 +469,36 @@
     NSLog(@"createNewUserSuccessful!");
     NSLog(@"username: %@",[[User currentUser] name]);
     NSLog(@"apiToken: %@",[[User currentUser] apiToken]);
+    
+    [SVProgressHUD dismiss];
+    
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [app loadRootViewController];
 }
 
 - (void)createNewUserFailedWithError:(NSError *)error {
+    
+    [SVProgressHUD dismiss];
+    
     NSLog(@"createNewUserFailedWithError failed: %@",[error localizedDescription]);
 }
 
 
+#pragma mark - Validate Input
 
+- (BOOL)loginValidateInputEmail:(NSString *)emailInput andPassword:(NSString *)pswrdInput {
+    if (emailInput.length > 0 && pswrdInput.length > 0) {
+        return YES;
+    }
+    return NO;
+    
+}
 
+- (BOOL)createUserValidateInputEmail:(NSString *)emailInput andPassword:(NSString *)pswrdInput andName:(NSString *)nameInput {
+    if (emailInput.length > 0 && pswrdInput.length > 0 && nameInput.length > 0) {
+        return YES;
+    }
+    return NO;
+}
 
 @end

@@ -17,17 +17,20 @@ PODS:
   - RestKit/Support (0.20.2):
     - TransitionKit (= 1.1.1)
   - SOCKit (1.1)
+  - SVProgressHUD (0.9)
   - TransitionKit (1.1.1)
 
 DEPENDENCIES:
-  - FlatUIKit (~> 1.1)
+  - FlatUIKit
   - RestKit (~> 0.20.2)
+  - SVProgressHUD (~> 0.9)
 
 SPEC CHECKSUMS:
   AFNetworking: 9ec8aafb9269236a7630bd8d9838ce2ba30fa2a0
   FlatUIKit: 3b15b582ffcfa4e392bedc4d3c5461f9b11c1cc2
   RestKit: e511651e916245fa4becfb0e8f966a1fa021fcd4
   SOCKit: ed67aeeca4a697b63a933229e53f4670d5b9300f
+  SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
   TransitionKit: 3b3836af6887d16a0834fa35031028792d1d5c0c
 
 COCOAPODS: 0.20.2
