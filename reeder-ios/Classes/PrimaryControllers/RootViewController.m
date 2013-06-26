@@ -141,13 +141,15 @@
     static NSString *CellIdentifier = kCellReuseIdentifier;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
     Feed *f = [[DataController sharedObject] feedAtIndex:indexPath.row];
     cell.textLabel.text = f.feedTitle;
-    cell.detailTextLabel.text = f.feedDescription;
+    cell.detailTextLabel.text = [f.feedUnreadPostsCount stringValue];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }

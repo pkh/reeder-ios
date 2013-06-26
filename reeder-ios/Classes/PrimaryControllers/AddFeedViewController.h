@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FlatUIKit/FUIAlertView.h>
 
-@interface AddFeedViewController : UIViewController
+@interface AddFeedViewController : UIViewController <UITextFieldDelegate, FUIAlertViewDelegate>
+
+- (void)newSubscriptionSuccessful;
+- (void)newSubscriptionFailedWithError:(NSError *)error;
 
 @end

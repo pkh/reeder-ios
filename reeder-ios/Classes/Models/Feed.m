@@ -8,6 +8,7 @@
 
 #import "Feed.h"
 #import "User.h"
+#import "AddFeedViewController.h"
 
 
 #define kFeedCreatedDate @"feedCreatedDate"
@@ -130,20 +131,20 @@
     [manager postObject:nil path:fullPathPattern parameters:params success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
         NSLog(@"subscribeToNewFeedWithFeedURL--SUCCESS");
         
-        /*
-        if ([delegate respondsToSelector:@selector(createNewUserSuccessful)]) {
-            [delegate createNewUserSuccessful];
+        
+        if ([delegate respondsToSelector:@selector(newSubscriptionSuccessful)]) {
+            [delegate newSubscriptionSuccessful];
         }
-        */
+        
         
     } failure:^ (RKObjectRequestOperation *operation, NSError *error) {
         NSLog(@"subscribeToNewFeedWithFeedURL--FAILURE");
         NSLog(@"%@",[error localizedFailureReason]);
-        /*
-        if ([delegate respondsToSelector:@selector(createNewUserFailedWithError:)]) {
-            [delegate createNewUserFailedWithError:error];
+        
+        if ([delegate respondsToSelector:@selector(newSubscriptionFailedWithError:)]) {
+            [delegate newSubscriptionFailedWithError:error];
         }
-        */
+        
     }];
     
     
