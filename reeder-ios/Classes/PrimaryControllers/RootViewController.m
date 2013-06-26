@@ -15,6 +15,7 @@
 #import "SettingsViewController.h"
 #import "Feed.h"
 #import "AddFeedViewController.h"
+#import "DataController.h"
 
 
 #define kTableViewFrame CGRectMake(0, 0, 320, self.view.frame.size.height)
@@ -22,6 +23,7 @@
 
 @interface RootViewController ()
 @property (nonatomic) UITableView *tableView;
+@property (nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation RootViewController
@@ -46,6 +48,12 @@
     [self.tableView setDataSource:self];
     [self.tableView setDelegate:self];
     [self.tableView setRowHeight:64];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl setTintColor:[UIColor pumpkinColor]];
+    [self.tableView addSubview:self.refreshControl];
+    
     [self.view addSubview:self.tableView];
     
     
@@ -77,6 +85,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark - Handle Pull-to-Refresh
+
+- (void)handleRefresh:(id)sender {
+    NSLog(@"refresh");
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    [[DataController sharedObject] loadFeedsFromServerWithDelegate:self];
+    
+}
+
 
 
 #pragma mark - Bar Button Item Actions
@@ -111,7 +132,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return [[DataController sharedObject] numberOfFeeds];
 }
 
 
@@ -120,11 +141,13 @@
     static NSString *CellIdentifier = kCellReuseIdentifier;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
-    
+    Feed *f = [[DataController sharedObject] feedAtIndex:indexPath.row];
+    cell.textLabel.text = f.feedTitle;
+    cell.detailTextLabel.text = f.feedDescription;
     
     return cell;
 }
@@ -135,6 +158,24 @@
     
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+#pragma mark - Delegate Callbacks
+
+- (void)feedsReloadedSuccessfully {
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [self.refreshControl endRefreshing];
+    
+    [self.tableView reloadData];
+    
+}
+
+- (void)feedReloadFailedWithError:(NSError *)error {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [self.refreshControl endRefreshing];
+    
 }
 
 

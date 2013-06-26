@@ -10,4 +10,8 @@
 
 @interface RootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+
+- (void)feedsReloadedSuccessfully;
+- (void)feedReloadFailedWithError:(NSError *)error;
+
 @end

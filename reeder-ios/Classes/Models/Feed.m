@@ -75,7 +75,30 @@
 
 
 
-
++ (RKObjectMapping *)objectMapping {
+    
+    // the "key" (on the left) is the JSON field name
+    // the "value" (on the right) is the local Cocoa property
+    
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[Feed class]];
+    
+    NSDictionary *keyPathsAndAttributes = @{@"id": @"feedID",
+                                            @"title" : @"feedTitle",
+                                            @"description" : @"feedDescription",
+                                            @"url" : @"feedRssURL",
+                                            @"site_url" : @"feedSiteURL",
+                                            @"last_modified_at" : @"feedLastModifiedDate",
+                                            @"status" : @"feedStatus",
+                                            @"posts_count" : @"feedPostsCount",
+                                            @"unread_posts_count" : @"feedUnreadPostsCount",
+                                            @"created_at" : @"feedCreatedDate",
+                                            @"updated_at" : @"feedUpdatedDate"};
+    
+    [mapping addAttributeMappingsFromDictionary:keyPathsAndAttributes];
+    
+    return mapping;
+    
+}
 
 
 

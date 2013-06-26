@@ -31,6 +31,9 @@
 
 + (void)subscribeToNewFeedWithFeedURL:(NSString *)url andDelegate:(id)delegate;
 
++ (RKObjectMapping *)objectMapping;
+
+
 
 @end
 
