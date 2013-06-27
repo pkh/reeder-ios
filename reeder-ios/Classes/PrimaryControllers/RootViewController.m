@@ -20,6 +20,7 @@
 #import "Post.h"
 #import "ReederAPIClient.h"
 #import "RecentPostsCell.h"
+#import "PostDetailViewController.h"
 
 
 
@@ -190,6 +191,11 @@ dispatch_queue_t background_load_queue()
     
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    PostDetailViewController *pdvc = [[PostDetailViewController alloc] init];
+    pdvc.postObject = [self.dataSource objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:pdvc animated:YES];
+    
 }
 
 

@@ -29,6 +29,7 @@
 		7FEF4448177CD1AB00EB7206 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF4447177CD1AB00EB7206 /* Post.m */; };
 		7FEF444E177CDC9900EB7206 /* ReederAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF444D177CDC9900EB7206 /* ReederAPIClient.m */; };
 		7FEF4451177CED7600EB7206 /* RecentPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF4450177CED7600EB7206 /* RecentPostsCell.m */; };
+		7FEF4454177CF49A00EB7206 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF4453177CF49A00EB7206 /* PostDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,8 @@
 		7FEF444D177CDC9900EB7206 /* ReederAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReederAPIClient.m; sourceTree = "<group>"; };
 		7FEF444F177CED7600EB7206 /* RecentPostsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPostsCell.h; sourceTree = "<group>"; };
 		7FEF4450177CED7600EB7206 /* RecentPostsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPostsCell.m; sourceTree = "<group>"; };
+		7FEF4452177CF49A00EB7206 /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
+		7FEF4453177CF49A00EB7206 /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
 		972FF7A5F6E247E4A6B75B3F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -127,6 +130,8 @@
 				7FE6ABA6177B5F0B00780252 /* SettingsViewController.m */,
 				7FD4A8D5177B873400715E02 /* AddFeedViewController.h */,
 				7FD4A8D6177B873400715E02 /* AddFeedViewController.m */,
+				7FEF4452177CF49A00EB7206 /* PostDetailViewController.h */,
+				7FEF4453177CF49A00EB7206 /* PostDetailViewController.m */,
 			);
 			path = PrimaryControllers;
 			sourceTree = "<group>";
@@ -297,6 +302,7 @@
 				7FEF4448177CD1AB00EB7206 /* Post.m in Sources */,
 				7FEF444E177CDC9900EB7206 /* ReederAPIClient.m in Sources */,
 				7FEF4451177CED7600EB7206 /* RecentPostsCell.m in Sources */,
+				7FEF4454177CF49A00EB7206 /* PostDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
