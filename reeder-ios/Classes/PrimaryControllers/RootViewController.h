@@ -11,6 +11,10 @@
 @interface RootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 
+
+- (void)postsLoadedSuccessfully:(NSMutableArray *)posts;
+- (void)failedToLoadPostsWithError:(NSError *)error;
+
 - (void)feedsReloadedSuccessfully;
 - (void)feedReloadFailedWithError:(NSError *)error;
 

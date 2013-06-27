@@ -18,19 +18,19 @@
 @implementation User
 
 
-//static User *currentUser = nil;
+static User *currentUser = nil;
 
 + (User *)currentUser
 {
-    /*
+    
     @synchronized(self) {
         if (currentUser == nil) {
             currentUser = [User restore];
         }
     }
     return currentUser;
-    */
     
+    /*
     //Alternate Method: Using dispatch_once...
     static User *__currentUser;
     static dispatch_once_t onceToken;
@@ -39,6 +39,7 @@
     });
 
     return __currentUser;
+    */
 }
 
 
@@ -129,8 +130,8 @@
         NSLog(@"%@",[result array]);
         
         User *newUser = (User *)[[result array] objectAtIndex:0];
-        
-        [newUser save];
+        User *user = newUser;
+        [user save];
         
         
         if ([delegate respondsToSelector:@selector(createNewUserSuccessful)]) {
@@ -186,7 +187,9 @@
         
         User *newUser = (User *)[[result array] objectAtIndex:0];
         
-        [newUser save];
+        User *user = newUser;
+        [user save];
+        
         
         
         if ([delegate respondsToSelector:@selector(successfullyLoggedIn)]) {

@@ -12,7 +12,7 @@
 
 
 //@interface Feed : NSManagedObject
-@interface Feed : NSObject <NSCoding>
+@interface Feed : NSObject /*<NSCoding>*/
 
 
 @property (nonatomic, retain) NSDate * feedCreatedDate;
@@ -29,9 +29,14 @@
 @property (nonatomic, retain) NSMutableArray *feedPosts;
 
 
+- (id)initWithDictionary:(NSDictionary *)dict;
+
+
+
+
 + (void)subscribeToNewFeedWithFeedURL:(NSString *)url andDelegate:(id)delegate;
 
-+ (RKObjectMapping *)objectMapping;
+//+ (RKObjectMapping *)objectMapping;
 
 
 

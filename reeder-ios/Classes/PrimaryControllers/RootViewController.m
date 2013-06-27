@@ -10,20 +10,26 @@
 #import <FlatUIKit/UIColor+FlatUI.h>
 #import <FlatUIKit/UIBarButtonItem+FlatUI.h>
 #import <FlatUIKit/UINavigationBar+FlatUI.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #import "Utils.h"
 #import "SettingsViewController.h"
 #import "Feed.h"
 #import "AddFeedViewController.h"
-#import "DataController.h"
+#import "User.h"
+#import "Post.h"
+#import "ReederAPIClient.h"
+#import "RecentPostsCell.h"
 
 
-#define kTableViewFrame CGRectMake(0, 0, 320, self.view.frame.size.height)
+
+#define kTableViewFrame CGRectMake(0, 0, 320, (self.view.frame.size.height-44))
 #define kCellReuseIdentifier @"CellIdentifier"
 
 @interface RootViewController ()
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UIRefreshControl *refreshControl;
+@property (nonatomic) NSMutableArray *dataSource;
 @end
 
 @implementation RootViewController
@@ -37,6 +43,19 @@
     return self;
 }
 */
+
+static dispatch_queue_t reederQueue;
+
+dispatch_queue_t background_load_queue()
+{
+    if (reederQueue == NULL) {
+        reederQueue = dispatch_queue_create("com.pkh.reeder.reederQueue", 0);
+    }
+    return reederQueue;
+}
+
+
+
 - (void)loadView {
     [super loadView];
     
@@ -47,11 +66,11 @@
     [self.tableView setFrame:kTableViewFrame];
     [self.tableView setDataSource:self];
     [self.tableView setDelegate:self];
-    [self.tableView setRowHeight:64];
+    [self.tableView setRowHeight:80];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.refreshControl setTintColor:[UIColor pumpkinColor]];
+    [self.refreshControl setTintColor:[UIColor wetAsphaltColor]];
     [self.tableView addSubview:self.refreshControl];
     
     [self.view addSubview:self.tableView];
@@ -76,7 +95,17 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonAction:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellReuseIdentifier];
+    [self.tableView registerClass:[RecentPostsCell class] forCellReuseIdentifier:kCellReuseIdentifier];
+    
+    if (!self.dataSource) {
+        self.dataSource = [[NSMutableArray alloc] init];
+    }
+    
+    
+    [SVProgressHUD showWithStatus:@"Loading Recent Posts..." maskType:SVProgressHUDMaskTypeGradient];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [ReederAPIClient loadRecentPostsWithDelegate:self];
+    
     
 }
 
@@ -94,7 +123,9 @@
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    [[DataController sharedObject] loadFeedsFromServerWithDelegate:self];
+    [ReederAPIClient loadRecentPostsWithDelegate:self];
+    
+    //[[DataController sharedObject] loadFeedsFromServerWithDelegate:self];
     
 }
 
@@ -114,13 +145,12 @@
 }
 
 - (void)addButtonAction:(id)sender {
-    
+
     AddFeedViewController *afvc = [[AddFeedViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:afvc];
     [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:navController animated:YES completion:nil];
-    
     
 }
 
@@ -132,24 +162,24 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[DataController sharedObject] numberOfFeeds];
+    return [self.dataSource count];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (RecentPostsCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = kCellReuseIdentifier;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    RecentPostsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[RecentPostsCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
-    Feed *f = [[DataController sharedObject] feedAtIndex:indexPath.row];
-    cell.textLabel.text = f.feedTitle;
-    cell.detailTextLabel.text = [f.feedUnreadPostsCount stringValue];
     
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    Post *p = [self.dataSource objectAtIndex:indexPath.row];
+    cell.feedNameLabel.text = p.parentFeed.feedTitle;
+    cell.postTitleLabel.text = p.postTitle;
+    cell.postContentLabel.text = p.postContent;
     
     return cell;
 }
@@ -164,6 +194,30 @@
 
 
 #pragma mark - Delegate Callbacks
+
+- (void)postsLoadedSuccessfully:(NSMutableArray *)posts {
+    NSLog(@"%@",NSStringFromSelector(_cmd));
+    [self.dataSource addObjectsFromArray:posts];
+    
+    if (self.refreshControl.isRefreshing) {
+        [self.refreshControl endRefreshing];
+    }
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [SVProgressHUD dismiss];
+    [self.tableView reloadData];
+}
+
+- (void)failedToLoadPostsWithError:(NSError *)error {
+    NSLog(@"%@: %@",NSStringFromSelector(_cmd), [error localizedDescription]);
+    
+    if (self.refreshControl.isRefreshing) {
+        [self.refreshControl endRefreshing];
+    }
+    [SVProgressHUD dismiss];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
+
 
 - (void)feedsReloadedSuccessfully {
     

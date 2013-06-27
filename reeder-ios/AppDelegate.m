@@ -187,7 +187,7 @@
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"ReederData.sqlite"];
-    
+
     if (![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]]) {
         NSURL *preloadURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"CoreDataTutorial2" ofType:@"sqlite"]];
         NSError *err = nil;
@@ -195,7 +195,7 @@
             NSLog(@"Oops, couldn't copy preloaded data");
         }
     }
- 
+
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -229,8 +229,8 @@
     
     return _persistentStoreCoordinator;
 }
-
 */
+
 
 #pragma mark - Application's Documents directory
 

@@ -392,6 +392,7 @@
     self.emailTextField.frame = CGRectMake(30, 58, 260, 26);
     self.emailTextField.placeholder = @"Email Address...";
     self.emailTextField.keyboardType = UIKeyboardTypeEmailAddress;
+    self.emailTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.emailTextField.font = [UIFont flatFontOfSize:20];
     self.emailTextField.delegate = self;
     self.emailTextField.autocorrectionType = UITextAutocorrectionTypeNo;

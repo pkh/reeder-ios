@@ -29,10 +29,28 @@
 
 @implementation Feed
 
+- (id)initWithDictionary:(NSDictionary *)dict {
+    if (self = [super init]) {
+        self.feedID = [dict objectForKey:@"id"];
+        self.feedTitle = [dict objectForKey:@"title"];
+        self.feedDescription = [dict objectForKey:@"description"];
+        self.feedRssURL = [dict objectForKey:@"url"];
+        self.feedSiteURL = [dict objectForKey:@"site_url"];
+        self.feedLastModifiedDate = [dict objectForKey:@"last_modified_at"];
+        self.feedStatus = [dict objectForKey:@"status"];
+        self.feedPostsCount = [dict objectForKey:@"posts_count"];
+        self.feedUnreadPostsCount = [dict objectForKey:@"unread_posts_count"];
+        self.feedCreatedDate = [dict objectForKey:@"created_at"];
+        self.feedUpdatedDate = [dict objectForKey:@"updated_at"];
+        
+    }
+    return self;
+}
 
 
 
 
+/*
 #pragma mark - NSCoding
 
 - (id)initWithCoder:(NSCoder *)coder
@@ -73,7 +91,7 @@
     [coder encodeObject:self.feedPosts forKey:kFeedPosts];
     
 }
-
+*/
 
 
 + (RKObjectMapping *)objectMapping {

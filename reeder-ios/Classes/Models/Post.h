@@ -13,7 +13,7 @@
 @class Feed;
 
 //@interface Post : NSManagedObject
-@interface Post : NSObject <NSCoding>
+@interface Post : NSObject /*<NSCoding>*/
 
 @property (nonatomic, retain) NSString * postAuthor;
 @property (nonatomic, retain) NSNumber * postBookmarked;
@@ -25,5 +25,9 @@
 @property (nonatomic, retain) NSDate * postReadDate;
 @property (nonatomic, retain) NSString * postTitle;
 @property (nonatomic, retain) Feed *parentFeed;
+
+
+- (id)initWithDictionary:(NSDictionary *)dict;
+
 
 @end
