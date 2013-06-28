@@ -203,6 +203,8 @@ dispatch_queue_t background_load_queue()
 
 - (void)postsLoadedSuccessfully:(NSMutableArray *)posts {
     NSLog(@"%@",NSStringFromSelector(_cmd));
+    
+    [self.dataSource removeAllObjects];
     [self.dataSource addObjectsFromArray:posts];
     
     if (self.refreshControl.isRefreshing) {

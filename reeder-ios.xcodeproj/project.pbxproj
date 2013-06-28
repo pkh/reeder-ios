@@ -21,6 +21,10 @@
 		7F761B8717779C3F00554C0F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F761B8617779C3F00554C0F /* Default.png */; };
 		7F761B8917779C3F00554C0F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F761B8817779C3F00554C0F /* Default@2x.png */; };
 		7F761B8B17779C3F00554C0F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F761B8A17779C3F00554C0F /* Default-568h@2x.png */; };
+		7FA37CBC177DE86900EA96C2 /* PSPanNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA37CBB177DE86900EA96C2 /* PSPanNavigationController.m */; };
+		7FA37CC0177DE87500EA96C2 /* RecentPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA37CBF177DE87500EA96C2 /* RecentPostsCell.m */; };
+		7FA37CC3177DEA2600EA96C2 /* SliderMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA37CC2177DEA2600EA96C2 /* SliderMenuViewController.m */; };
+		7FA37CC6177DED7300EA96C2 /* ReederRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA37CC5177DED7300EA96C2 /* ReederRequest.m */; };
 		7FD4A8D7177B873400715E02 /* AddFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4A8D6177B873400715E02 /* AddFeedViewController.m */; };
 		7FD7AF8017789EB1008029EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD7AF7F17789EB1008029EF /* SystemConfiguration.framework */; };
 		7FD7AF8217789EB7008029EF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD7AF8117789EB7008029EF /* MobileCoreServices.framework */; };
@@ -28,7 +32,6 @@
 		7FEF4445177CD1A200EB7206 /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF4444177CD1A200EB7206 /* Feed.m */; };
 		7FEF4448177CD1AB00EB7206 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF4447177CD1AB00EB7206 /* Post.m */; };
 		7FEF444E177CDC9900EB7206 /* ReederAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF444D177CDC9900EB7206 /* ReederAPIClient.m */; };
-		7FEF4451177CED7600EB7206 /* RecentPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF4450177CED7600EB7206 /* RecentPostsCell.m */; };
 		7FEF4454177CF49A00EB7206 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF4453177CF49A00EB7206 /* PostDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +57,14 @@
 		7F761B8617779C3F00554C0F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		7F761B8817779C3F00554C0F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		7F761B8A17779C3F00554C0F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		7FA37CBA177DE86900EA96C2 /* PSPanNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPanNavigationController.h; sourceTree = "<group>"; };
+		7FA37CBB177DE86900EA96C2 /* PSPanNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPanNavigationController.m; sourceTree = "<group>"; };
+		7FA37CBE177DE87500EA96C2 /* RecentPostsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPostsCell.h; sourceTree = "<group>"; };
+		7FA37CBF177DE87500EA96C2 /* RecentPostsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPostsCell.m; sourceTree = "<group>"; };
+		7FA37CC1177DEA2600EA96C2 /* SliderMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderMenuViewController.h; sourceTree = "<group>"; };
+		7FA37CC2177DEA2600EA96C2 /* SliderMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderMenuViewController.m; sourceTree = "<group>"; };
+		7FA37CC4177DED7300EA96C2 /* ReederRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReederRequest.h; sourceTree = "<group>"; };
+		7FA37CC5177DED7300EA96C2 /* ReederRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReederRequest.m; sourceTree = "<group>"; };
 		7FD4A8D5177B873400715E02 /* AddFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFeedViewController.h; sourceTree = "<group>"; };
 		7FD4A8D6177B873400715E02 /* AddFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFeedViewController.m; sourceTree = "<group>"; };
 		7FD7AF7F17789EB1008029EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -67,8 +78,6 @@
 		7FEF4447177CD1AB00EB7206 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		7FEF444C177CDC9900EB7206 /* ReederAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReederAPIClient.h; sourceTree = "<group>"; };
 		7FEF444D177CDC9900EB7206 /* ReederAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReederAPIClient.m; sourceTree = "<group>"; };
-		7FEF444F177CED7600EB7206 /* RecentPostsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPostsCell.h; sourceTree = "<group>"; };
-		7FEF4450177CED7600EB7206 /* RecentPostsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPostsCell.m; sourceTree = "<group>"; };
 		7FEF4452177CF49A00EB7206 /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
 		7FEF4453177CF49A00EB7206 /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
 		972FF7A5F6E247E4A6B75B3F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,13 +103,14 @@
 		7F1C8E80177A482F0054395F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7FE6ABA8177B60E400780252 /* Utils.h */,
+				7FA37CBA177DE86900EA96C2 /* PSPanNavigationController.h */,
+				7FA37CBB177DE86900EA96C2 /* PSPanNavigationController.m */,
 				7F1C8E81177A482F0054395F /* LoginViewController.h */,
 				7F1C8E82177A482F0054395F /* LoginViewController.m */,
 				7F1C8E86177A482F0054395F /* PrimaryControllers */,
 				7F1C8E83177A482F0054395F /* Models */,
-				7FE6ABA8177B60E400780252 /* Utils.h */,
-				7FEF444F177CED7600EB7206 /* RecentPostsCell.h */,
-				7FEF4450177CED7600EB7206 /* RecentPostsCell.m */,
+				7FA37CBD177DE87500EA96C2 /* Views */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -117,6 +127,8 @@
 				7FEF4444177CD1A200EB7206 /* Feed.m */,
 				7FEF444C177CDC9900EB7206 /* ReederAPIClient.h */,
 				7FEF444D177CDC9900EB7206 /* ReederAPIClient.m */,
+				7FA37CC4177DED7300EA96C2 /* ReederRequest.h */,
+				7FA37CC5177DED7300EA96C2 /* ReederRequest.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -126,6 +138,8 @@
 			children = (
 				7F1C8E87177A482F0054395F /* RootViewController.h */,
 				7F1C8E88177A482F0054395F /* RootViewController.m */,
+				7FA37CC1177DEA2600EA96C2 /* SliderMenuViewController.h */,
+				7FA37CC2177DEA2600EA96C2 /* SliderMenuViewController.m */,
 				7FE6ABA5177B5F0B00780252 /* SettingsViewController.h */,
 				7FE6ABA6177B5F0B00780252 /* SettingsViewController.m */,
 				7FD4A8D5177B873400715E02 /* AddFeedViewController.h */,
@@ -190,6 +204,15 @@
 				7F761B8A17779C3F00554C0F /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7FA37CBD177DE87500EA96C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7FA37CBE177DE87500EA96C2 /* RecentPostsCell.h */,
+				7FA37CBF177DE87500EA96C2 /* RecentPostsCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,8 +324,11 @@
 				7FEF4445177CD1A200EB7206 /* Feed.m in Sources */,
 				7FEF4448177CD1AB00EB7206 /* Post.m in Sources */,
 				7FEF444E177CDC9900EB7206 /* ReederAPIClient.m in Sources */,
-				7FEF4451177CED7600EB7206 /* RecentPostsCell.m in Sources */,
 				7FEF4454177CF49A00EB7206 /* PostDetailViewController.m in Sources */,
+				7FA37CBC177DE86900EA96C2 /* PSPanNavigationController.m in Sources */,
+				7FA37CC0177DE87500EA96C2 /* RecentPostsCell.m in Sources */,
+				7FA37CC3177DEA2600EA96C2 /* SliderMenuViewController.m in Sources */,
+				7FA37CC6177DED7300EA96C2 /* ReederRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

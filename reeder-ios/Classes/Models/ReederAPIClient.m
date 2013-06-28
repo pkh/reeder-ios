@@ -11,12 +11,12 @@
 #import "Feed.h"
 #import "Post.h"
 #import "RootViewController.h"
-
+#import "ReederRequest.h"
 
 @implementation ReederAPIClient
 
 
-#define kLOAD_RECENT_POSTS_URL @"http://reeder.doejoapp.com/api/posts?api_token="
+#define kLOAD_RECENT_POSTS_URL @"http://reeder.doejoapp.com/api/posts"
 
 /*
 static ReederAPIClient *reederAPIClient = nil;
@@ -34,8 +34,8 @@ static ReederAPIClient *reederAPIClient = nil;
 
 + (void)loadRecentPostsWithDelegate:(id)delegate {
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kLOAD_RECENT_POSTS_URL,[[User currentUser] apiToken]]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURL *url = [NSURL URLWithString:kLOAD_RECENT_POSTS_URL];
+    ReederRequest *request = [[ReederRequest alloc] initWithURL:url];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
@@ -64,9 +64,6 @@ static ReederAPIClient *reederAPIClient = nil;
     [operation start];
     
     
-    
 }
-
-
 
 @end
