@@ -46,6 +46,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = kNAV_BAR_COLOR;
     // Override point for customization after application launch.
     
     /*
@@ -260,7 +261,14 @@
 
 - (void)loadRootViewController {
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[PostsViewController alloc] init]];
+    PostsViewController *pvc = [[PostsViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pvc];
+    [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+    self.window.rootViewController = navController;
+    
+    
+    
+    //self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[PostsViewController alloc] init]];
     
     /*
     

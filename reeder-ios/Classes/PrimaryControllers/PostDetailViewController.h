@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import <DTCoreText/DTCoreText.h>
 
 
-@interface PostDetailViewController : UIViewController
+@interface PostDetailViewController : UIViewController <DTAttributedTextContentViewDelegate>
 
 @property (nonatomic) Post *postObject;
 

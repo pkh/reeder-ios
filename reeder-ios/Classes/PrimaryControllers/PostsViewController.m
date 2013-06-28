@@ -85,9 +85,6 @@ dispatch_queue_t background_load_queue()
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor wetAsphaltColor]
-                                  highlightedColor:[UIColor midnightBlueColor]
-                                      cornerRadius:6];
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonAction:)];
     self.navigationItem.rightBarButtonItem = addButton;

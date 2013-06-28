@@ -112,6 +112,7 @@
 				7F1C8E86177A482F0054395F /* PrimaryControllers */,
 				7F1C8E83177A482F0054395F /* Models */,
 				7FA37CBD177DE87500EA96C2 /* Views */,
+				7F4C7623177E2ED2006CD663 /* Library */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -151,6 +152,13 @@
 				7FEF4453177CF49A00EB7206 /* PostDetailViewController.m */,
 			);
 			path = PrimaryControllers;
+			sourceTree = "<group>";
+		};
+		7F4C7623177E2ED2006CD663 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 		7F761B6817779C3F00554C0F = {

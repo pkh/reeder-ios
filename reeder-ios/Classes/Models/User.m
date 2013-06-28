@@ -190,8 +190,6 @@ static User *currentUser = nil;
         User *user = newUser;
         [user save];
         
-        
-        
         if ([delegate respondsToSelector:@selector(successfullyLoggedIn)]) {
             [delegate successfullyLoggedIn];
         }

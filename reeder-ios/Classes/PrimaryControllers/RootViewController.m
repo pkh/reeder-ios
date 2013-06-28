@@ -12,6 +12,7 @@
 #import <FlatUIKit/UINavigationBar+FlatUI.h>
 #import <FlatUIKit/UIColor+FlatUI.h>
 #import <FlatUIKit/UIFont+FlatUI.h>
+#import <FlatUIKit/UIBarButtonItem+FlatUI.h>
 #import "Utils.h"
 #import "PostsViewController.h"
 #import "LoginViewController.h" 
@@ -41,6 +42,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor wetAsphaltColor]
+                                  highlightedColor:[UIColor midnightBlueColor]
+                                      cornerRadius:6];
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(showMenu)];
 }
 
@@ -58,6 +64,7 @@
             
             PostsViewController *pvc = [[PostsViewController alloc] init];
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pvc];
+            [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
             [menu setRootViewController:navController];
             
         }];

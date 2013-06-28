@@ -1,5 +1,14 @@
 PODS:
   - AFNetworking (1.3.1)
+  - DTCoreText (1.5.3):
+    - DTFoundation/Core (~> 1.4.3)
+    - DTFoundation/DTHMLParser (~> 1.4.3)
+    - DTFoundation/UIKit (~> 1.4.3)
+  - DTFoundation/Core (1.4.3)
+  - DTFoundation/DTHMLParser (1.4.3):
+    - DTFoundation/Core
+  - DTFoundation/UIKit (1.4.3):
+    - DTFoundation/Core
   - FlatUIKit (1.1)
   - RESideMenu (1.0.1)
   - RestKit (0.20.2):
@@ -22,6 +31,7 @@ PODS:
   - TransitionKit (1.1.1)
 
 DEPENDENCIES:
+  - DTCoreText (~> 1.5.3)
   - FlatUIKit
   - RESideMenu (~> 1.0.1)
   - RestKit (~> 0.20.2)
@@ -29,6 +39,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 9ec8aafb9269236a7630bd8d9838ce2ba30fa2a0
+  DTCoreText: 5fd652092630ef9254c538d870c115ee548bfe18
+  DTFoundation: a434724c451be0fa44c1afd183349192cf643830
   FlatUIKit: 3b15b582ffcfa4e392bedc4d3c5461f9b11c1cc2
   RESideMenu: 85572ea1c3bb7013937dc2c65bbe3ad0748130dc
   RestKit: e511651e916245fa4becfb0e8f966a1fa021fcd4
