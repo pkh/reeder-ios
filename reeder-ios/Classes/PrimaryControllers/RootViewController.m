@@ -11,9 +11,15 @@
 #import "SettingsViewController.h"
 #import <FlatUIKit/UINavigationBar+FlatUI.h>
 #import <FlatUIKit/UIColor+FlatUI.h>
+#import <FlatUIKit/UIFont+FlatUI.h>
 #import "Utils.h"
 #import "PostsViewController.h"
+#import "LoginViewController.h" 
+#import "User.h"
 
+
+
+#define kLOGOUT_ALERTVIEW 0
 
 
 @interface RootViewController ()
@@ -81,9 +87,27 @@
             [menu setRootViewController:navController];
             
         }];
-        RESideMenuItem *logOutItem = [[RESideMenuItem alloc] initWithTitle:@"Log out" action:^(RESideMenu *menu, RESideMenuItem *item) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirmation" message:@"Are you sure you want to log out?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out", nil];
+        RESideMenuItem *logOutItem = [[RESideMenuItem alloc] initWithTitle:@"Log Out" action:^(RESideMenu *menu, RESideMenuItem *item) {
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Log Out" message:@"Are you sure you want to log out?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out", nil];
             [alertView show];
+            
+            /*
+            FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Log Out" message:@"Are you sure you want to log out?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out",nil];
+            
+            alertView.titleLabel.textColor = [UIColor cloudsColor];
+            alertView.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+            alertView.messageLabel.textColor = [UIColor cloudsColor];
+            alertView.messageLabel.font = [UIFont flatFontOfSize:14];
+            alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
+            alertView.alertContainer.backgroundColor = [UIColor midnightBlueColor];
+            alertView.defaultButtonColor = [UIColor cloudsColor];
+            alertView.defaultButtonShadowColor = [UIColor asbestosColor];
+            alertView.defaultButtonFont = [UIFont boldFlatFontOfSize:16];
+            alertView.defaultButtonTitleColor = [UIColor asbestosColor];
+            alertView.tag = kLOGOUT_ALERTVIEW;
+            [alertView show];
+            */
         }];
         
         _sideMenu = [[RESideMenu alloc] initWithItems:@[recentPostsItem, viewByFeedItem, bookmarkedItem, manageFeedsItem, settingsItem, logOutItem]];
@@ -93,5 +117,23 @@
     
     [_sideMenu show];
 }
+
+
+
+
+- (void)alertView:(FUIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Log Out"]) {
+    
+        [[User currentUser] drop];
+        
+        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        LoginViewController *lvc = [[LoginViewController alloc] init];
+        app.window.rootViewController = lvc;
+    }
+    
+    
+}
+
 
 @end

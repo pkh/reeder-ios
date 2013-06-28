@@ -243,6 +243,8 @@ static User *currentUser = nil;
 	//NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
 	//NSString *fullFileName = [NSString stringWithFormat:@"%@/user.dat", [paths objectAtIndex:0]];
 	
+    currentUser = nil;
+    
     NSString *fullFileName = [self getUserDataFilePath];
     
 	NSFileManager *fileManager = [NSFileManager defaultManager];

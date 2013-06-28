@@ -29,4 +29,7 @@
 
 - (BOOL)isLoggedIn;
 
+- (void)save;
+- (void)drop;
+
 @end
