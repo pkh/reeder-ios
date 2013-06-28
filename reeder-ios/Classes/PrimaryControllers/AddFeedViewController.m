@@ -12,6 +12,9 @@
 #import <FlatUIKit/FUIButton.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "Feed.h"
+#import "ReederAPIClient.h"
+
+
 
 @interface AddFeedViewController ()
 @property (nonatomic) UITextField *urlTextField;
@@ -92,7 +95,7 @@
     if (self.urlTextField.text.length > 0) {
         [self.urlTextField resignFirstResponder];
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-        [Feed subscribeToNewFeedWithFeedURL:self.urlTextField.text andDelegate:self];
+        [ReederAPIClient subscribeToNewFeedWithFeedURL:self.urlTextField.text andDelegate:self];
     }
 }
 

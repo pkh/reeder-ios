@@ -12,11 +12,14 @@
 #import "Post.h"
 #import "RootViewController.h"
 #import "ReederRequest.h"
+#import "AddFeedViewController.h"
+
 
 @implementation ReederAPIClient
 
 
 #define kLOAD_RECENT_POSTS_URL @"http://reeder.doejoapp.com/api/posts"
+#define kADD_NEW_FEED_URL @"http://reeder.doejoapp.com/api/feeds/import"
 
 /*
 static ReederAPIClient *reederAPIClient = nil;
@@ -64,6 +67,35 @@ static ReederAPIClient *reederAPIClient = nil;
     [operation start];
     
     
+}
+
+
+
++ (void)subscribeToNewFeedWithFeedURL:(NSString *)url andDelegate:(id)delegate {
+
+    NSString *fullURLStr = [NSString stringWithFormat:@"%@?url=%@", kADD_NEW_FEED_URL, url];
+    NSURL *fullURL = [NSURL URLWithString:fullURLStr];
+    ReederRequest *request = [[ReederRequest alloc] initWithURL:fullURL];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                        
+                                                                                            NSLog(@"subscribeToNewFeedWithFeedURL--SUCCESS");
+                                                                                            if ([delegate respondsToSelector:@selector(newSubscriptionSuccessful)]) {
+                                                                                                [delegate newSubscriptionSuccessful];
+                                                                                            }
+                                                                                            
+                                                                                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                        
+                                                                                            NSLog(@"subscribeToNewFeedWithFeedURL--FAILURE");
+                                                                                            NSLog(@"%@",[error localizedFailureReason]);
+                                                                                            if ([delegate respondsToSelector:@selector(newSubscriptionFailedWithError:)]) {
+                                                                                                [delegate newSubscriptionFailedWithError:error];
+                                                                                            }
+                                                                                            
+                                                                                        }];
+    
+    [operation start];
 }
 
 @end
