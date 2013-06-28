@@ -21,6 +21,10 @@
 #define kLOAD_RECENT_POSTS_URL @"http://reeder.doejoapp.com/api/posts"
 #define kADD_NEW_FEED_URL @"http://reeder.doejoapp.com/api/feeds/import"
 
+
+
+
+
 /*
 static ReederAPIClient *reederAPIClient = nil;
 
@@ -70,12 +74,13 @@ static ReederAPIClient *reederAPIClient = nil;
 }
 
 
-
 + (void)subscribeToNewFeedWithFeedURL:(NSString *)url andDelegate:(id)delegate {
 
     NSString *fullURLStr = [NSString stringWithFormat:@"%@?url=%@", kADD_NEW_FEED_URL, url];
     NSURL *fullURL = [NSURL URLWithString:fullURLStr];
     ReederRequest *request = [[ReederRequest alloc] initWithURL:fullURL];
+    
+    [request setHTTPMethod:@"POST"];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {

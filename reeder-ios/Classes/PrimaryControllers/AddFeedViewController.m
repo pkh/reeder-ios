@@ -15,6 +15,10 @@
 #import "ReederAPIClient.h"
 
 
+#define kSUCCESS_ALERTVIEW 0
+#define kFAILURE_ALERTVIEW 1
+
+
 
 @interface AddFeedViewController ()
 @property (nonatomic) UITextField *urlTextField;
@@ -106,7 +110,7 @@
     
     [SVProgressHUD dismiss];
     
-    FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Subscribed Successfully" message:@"Go ahead and refresh your feeds to see your new subscription." delegate:self cancelButtonTitle:@"Cool!" otherButtonTitles:nil];
+    FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Subscribed Successfully" message:@"Go ahead and refresh your feeds to see your new subscription." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
     alertView.titleLabel.textColor = [UIColor cloudsColor];
     alertView.titleLabel.font = [UIFont boldFlatFontOfSize:16];
@@ -118,6 +122,7 @@
     alertView.defaultButtonShadowColor = [UIColor asbestosColor];
     alertView.defaultButtonFont = [UIFont boldFlatFontOfSize:16];
     alertView.defaultButtonTitleColor = [UIColor asbestosColor];
+    alertView.tag = kSUCCESS_ALERTVIEW;
     [alertView show];
 }
 
@@ -137,6 +142,7 @@
     alertView.defaultButtonShadowColor = [UIColor asbestosColor];
     alertView.defaultButtonFont = [UIFont boldFlatFontOfSize:16];
     alertView.defaultButtonTitleColor = [UIColor asbestosColor];
+    alertView.tag = kFAILURE_ALERTVIEW;
     [alertView show];
     
 }
@@ -146,10 +152,8 @@
 
 - (void)alertView:(FUIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     
-    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    
-    if ([buttonTitle isEqualToString:@"Cool!"]) {
-        [self doneButtonAction:nil];
+    if (alertView.tag == kSUCCESS_ALERTVIEW) {
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     
 }
