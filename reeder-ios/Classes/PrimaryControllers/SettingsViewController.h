@@ -6,8 +6,9 @@
 //  Copyright (c) 2013 pkh. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RootViewController.h"
 
-@interface SettingsViewController : UIViewController
+
+@interface SettingsViewController : RootViewController
 
 @end

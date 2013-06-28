@@ -2,20 +2,17 @@
 //  RootViewController.h
 //  reeder-ios
 //
-//  Created by Patrick Hanlon on 6/24/13.
+//  Created by Patrick Hanlon on 6/28/13.
 //  Copyright (c) 2013 pkh. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import <RESideMenu/RESideMenu.h>
 
-@interface RootViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+#define IS_WIDESCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
+@interface RootViewController : UIViewController
 
-
-- (void)postsLoadedSuccessfully:(NSMutableArray *)posts;
-- (void)failedToLoadPostsWithError:(NSError *)error;
-
-- (void)feedsReloadedSuccessfully;
-- (void)feedReloadFailedWithError:(NSError *)error;
+@property (strong, readonly, nonatomic) RESideMenu *sideMenu;
 
 @end

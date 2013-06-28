@@ -22,5 +22,6 @@
 - (NSURL *)applicationDocumentsDirectory;
 */
 - (void)loadRootViewController;
++ (NSInteger)OSVersion;
 
 @end

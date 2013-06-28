@@ -16,8 +16,8 @@
 #import "RootViewController.h"
 #import "Feed.h"
 #import "Post.h"
-#import "PSPanNavigationController.h"
-
+#import "SliderMenuViewController.h"
+#import "PostsViewController.h"
 
 
 
@@ -29,6 +29,18 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 */
+
+
++ (NSInteger)OSVersion
+{
+    static NSUInteger _deviceSystemMajorVersion = -1;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _deviceSystemMajorVersion = [[[[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."] objectAtIndex:0] intValue];
+    });
+    return _deviceSystemMajorVersion;
+}
+
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -81,7 +93,6 @@
     
     
     
-    //[self attemptTestLogin];
     
     if ([[User currentUser] isLoggedIn]) {
         NSLog(@"user IS logged in");
@@ -249,25 +260,17 @@
 
 - (void)loadRootViewController {
     
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[PostsViewController alloc] init]];
+    
+    /*
+    
     RootViewController *rvc = [[RootViewController alloc] init];
-    
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:rvc];
-    
     [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+
     self.window.rootViewController = navController;
-    
+    */
 }
-
-
-
-#pragma mark - Testing
-
-- (void)attemptTestLogin {
-    
-    //[User loginWithName:@"pkh" emailAddress:@"patrick@doejo.com" password:@"password" andDelegate:nil];   
-    //[User authenticateWithEmail:@"patrick@doejo.com" andPassword:@"password" withDelegate:nil];
-}
-
 
 
 

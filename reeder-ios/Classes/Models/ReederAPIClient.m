@@ -10,7 +10,7 @@
 #import "User.h"
 #import "Feed.h"
 #import "Post.h"
-#import "RootViewController.h"
+#import "PostsViewController.h"
 #import "ReederRequest.h"
 #import "AddFeedViewController.h"
 
@@ -55,7 +55,7 @@ static ReederAPIClient *reederAPIClient = nil;
                                                                                                 Post *p = [[Post alloc] initWithDictionary:dict];
                                                                                                 [postsArray addObject:p];
                                                                                             }
-                                                                                            
+
                                                                                             if ([delegate respondsToSelector:@selector(postsLoadedSuccessfully:)]) {
                                                                                                 [delegate postsLoadedSuccessfully:postsArray];
                                                                                             }

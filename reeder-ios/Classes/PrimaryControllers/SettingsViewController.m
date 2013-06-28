@@ -36,9 +36,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonAction:)];
-    self.navigationItem.leftBarButtonItem = doneButton;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,10 +45,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Bar Button Actions
 
-- (void)doneButtonAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 @end
