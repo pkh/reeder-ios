@@ -48,7 +48,7 @@ static ReederAPIClient *reederAPIClient = nil;
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             NSLog(@"Success");
                                                                                             
-                                                                                            NSArray *recs = JSON;
+                                                                                            NSArray *recs = [JSON objectForKey:@"records"];
                                                                                             NSLog(@"recs count: %i",[recs count]);
                                                                                             NSMutableArray *postsArray = [[NSMutableArray alloc] init];
                                                                                             for (NSDictionary *dict in recs) {
