@@ -61,6 +61,10 @@ dispatch_queue_t background_load_queue()
 - (void)loadView {
     [super loadView];
     
+    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor carrotColor]
+                                  highlightedColor:[UIColor pumpkinColor]
+                                      cornerRadius:6];
+    
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setTitle:@"Reeder"];
     
@@ -72,7 +76,7 @@ dispatch_queue_t background_load_queue()
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.refreshControl setTintColor:[UIColor wetAsphaltColor]];
+    [self.refreshControl setTintColor:[UIColor blackColor]];
     [self.tableView addSubview:self.refreshControl];
     
     [self.view addSubview:self.tableView];

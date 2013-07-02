@@ -10,9 +10,14 @@
 #import <RestKit/RestKit.h>
 
 
+@class JASidePanelController;
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) JASidePanelController *viewController;
+
 /*
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;

@@ -9,4 +9,4 @@
 #import <Foundation/Foundation.h>
 
 
-#define kNAV_BAR_COLOR [UIColor asbestosColor]
+#define kNAV_BAR_COLOR [UIColor blackColor]

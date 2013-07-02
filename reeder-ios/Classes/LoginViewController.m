@@ -13,7 +13,6 @@
 #import <FlatUIKit/FUIAlertView.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "User.h"
-#import "RootViewController.h"
 #import "AppDelegate.h"
 
 

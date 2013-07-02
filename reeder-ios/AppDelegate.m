@@ -13,12 +13,12 @@
 #import "Utils.h"
 #import "User.h"
 #import "LoginViewController.h"
-#import "RootViewController.h"
 #import "Feed.h"
 #import "Post.h"
 #import "SliderMenuViewController.h"
 #import "PostsViewController.h"
 
+#import "JASidePanelController.h"
 
 
 
@@ -29,6 +29,7 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 */
+@synthesize viewController = _viewController;
 
 
 + (NSInteger)OSVersion
@@ -261,11 +262,27 @@
 
 - (void)loadRootViewController {
     
+    self.viewController = [[JASidePanelController alloc] init];
+    self.viewController.leftPanel = [[SliderMenuViewController alloc] init];
+    
+    PostsViewController *pvc = [[PostsViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pvc];
+    [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+    self.viewController.centerPanel = navController;    
+    
+    self.window.rootViewController = self.viewController;
+    
+    
+    
+    
+    
+    
+    /*
     PostsViewController *pvc = [[PostsViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pvc];
     [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
     self.window.rootViewController = navController;
-    
+    */
     
     
     //self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[PostsViewController alloc] init]];

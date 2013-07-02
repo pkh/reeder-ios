@@ -38,7 +38,7 @@
         [self.contentView addSubview:self.postContentLabel];
         
         [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        
+        [self setSelectionStyle:UITableViewCellSelectionStyleGray];
         
     }
     return self;

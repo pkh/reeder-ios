@@ -10,7 +10,7 @@
 		05774CDC09E24459AC71C946 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 972FF7A5F6E247E4A6B75B3F /* libPods.a */; };
 		7F1C8E89177A482F0054395F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1C8E82177A482F0054395F /* LoginViewController.m */; };
 		7F1C8E8A177A482F0054395F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1C8E85177A482F0054395F /* User.m */; };
-		7F4C761C177E161A006CD663 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C761B177E161A006CD663 /* RootViewController.m */; };
+		7F20BAC517838035004BB7DC /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F20BAC417838035004BB7DC /* JASidePanelController.m */; };
 		7F4C7622177E1791006CD663 /* PostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C7621177E1791006CD663 /* PostsViewController.m */; };
 		7F5796A7177B401D0090E1E3 /* ReederDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F5796A5177B401D0090E1E3 /* ReederDataModel.xcdatamodeld */; };
 		7F761B7517779C3F00554C0F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F761B7417779C3F00554C0F /* UIKit.framework */; };
@@ -42,8 +42,8 @@
 		7F1C8E82177A482F0054395F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		7F1C8E84177A482F0054395F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		7F1C8E85177A482F0054395F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		7F4C761A177E161A006CD663 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		7F4C761B177E161A006CD663 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		7F20BAC317838035004BB7DC /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASidePanelController.h; sourceTree = "<group>"; };
+		7F20BAC417838035004BB7DC /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASidePanelController.m; sourceTree = "<group>"; };
 		7F4C7620177E1791006CD663 /* PostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsViewController.h; sourceTree = "<group>"; };
 		7F4C7621177E1791006CD663 /* PostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsViewController.m; sourceTree = "<group>"; };
 		7F5796A6177B401D0090E1E3 /* ReederDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReederDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -138,8 +138,6 @@
 		7F1C8E86177A482F0054395F /* PrimaryControllers */ = {
 			isa = PBXGroup;
 			children = (
-				7F4C761A177E161A006CD663 /* RootViewController.h */,
-				7F4C761B177E161A006CD663 /* RootViewController.m */,
 				7F4C7620177E1791006CD663 /* PostsViewController.h */,
 				7F4C7621177E1791006CD663 /* PostsViewController.m */,
 				7FA37CC1177DEA2600EA96C2 /* SliderMenuViewController.h */,
@@ -154,9 +152,19 @@
 			path = PrimaryControllers;
 			sourceTree = "<group>";
 		};
+		7F20BAC217838035004BB7DC /* JASidePanelController */ = {
+			isa = PBXGroup;
+			children = (
+				7F20BAC317838035004BB7DC /* JASidePanelController.h */,
+				7F20BAC417838035004BB7DC /* JASidePanelController.m */,
+			);
+			path = JASidePanelController;
+			sourceTree = "<group>";
+		};
 		7F4C7623177E2ED2006CD663 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				7F20BAC217838035004BB7DC /* JASidePanelController */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -339,8 +347,8 @@
 				7FA37CC0177DE87500EA96C2 /* RecentPostsCell.m in Sources */,
 				7FA37CC3177DEA2600EA96C2 /* SliderMenuViewController.m in Sources */,
 				7FA37CC6177DED7300EA96C2 /* ReederRequest.m in Sources */,
-				7F4C761C177E161A006CD663 /* RootViewController.m in Sources */,
 				7F4C7622177E1791006CD663 /* PostsViewController.m in Sources */,
+				7F20BAC517838035004BB7DC /* JASidePanelController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
