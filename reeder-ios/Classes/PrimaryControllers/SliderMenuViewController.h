@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FlatUIKit/FUIAlertView.h>
 
-@interface SliderMenuViewController : UIViewController
+
+@interface SliderMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, FUIAlertViewDelegate>
 
 @end

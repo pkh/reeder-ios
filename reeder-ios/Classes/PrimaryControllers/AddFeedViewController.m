@@ -54,13 +54,13 @@
     
     self.saveFeedButton = [FUIButton buttonWithType:UIButtonTypeCustom];
     self.saveFeedButton.frame = CGRectMake(30, 90, 260, 44);
-    self.saveFeedButton.buttonColor = [UIColor asbestosColor];
-    self.saveFeedButton.shadowColor = [UIColor wetAsphaltColor];
+    self.saveFeedButton.buttonColor = [UIColor carrotColor];
+    self.saveFeedButton.shadowColor = [UIColor pumpkinColor];
     self.saveFeedButton.shadowHeight = 3.0f;
     self.saveFeedButton.cornerRadius = 6.0f;
     self.saveFeedButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
-    [self.saveFeedButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
-    [self.saveFeedButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
+    [self.saveFeedButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.saveFeedButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     
     [self.saveFeedButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.saveFeedButton setTitle:@"Add New Feed" forState:UIControlStateNormal];
@@ -112,16 +112,16 @@
     
     FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Subscribed Successfully" message:@"Go ahead and refresh your feeds to see your new subscription." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
-    alertView.titleLabel.textColor = [UIColor cloudsColor];
+    alertView.titleLabel.textColor = [UIColor whiteColor];
     alertView.titleLabel.font = [UIFont boldFlatFontOfSize:16];
-    alertView.messageLabel.textColor = [UIColor cloudsColor];
+    alertView.messageLabel.textColor = [UIColor whiteColor];
     alertView.messageLabel.font = [UIFont flatFontOfSize:14];
     alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
-    alertView.alertContainer.backgroundColor = [UIColor midnightBlueColor];
-    alertView.defaultButtonColor = [UIColor cloudsColor];
-    alertView.defaultButtonShadowColor = [UIColor asbestosColor];
+    alertView.alertContainer.backgroundColor = [UIColor blackColor];
+    alertView.defaultButtonColor = [UIColor carrotColor];
+    alertView.defaultButtonShadowColor = [UIColor pumpkinColor];
     alertView.defaultButtonFont = [UIFont boldFlatFontOfSize:16];
-    alertView.defaultButtonTitleColor = [UIColor asbestosColor];
+    alertView.defaultButtonTitleColor = [UIColor whiteColor];
     alertView.tag = kSUCCESS_ALERTVIEW;
     [alertView show];
 }
@@ -132,16 +132,16 @@
     
     FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Error!" message:@"There was an error adding your new feed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
-    alertView.titleLabel.textColor = [UIColor cloudsColor];
+    alertView.titleLabel.textColor = [UIColor whiteColor];
     alertView.titleLabel.font = [UIFont boldFlatFontOfSize:16];
-    alertView.messageLabel.textColor = [UIColor cloudsColor];
+    alertView.messageLabel.textColor = [UIColor whiteColor];
     alertView.messageLabel.font = [UIFont flatFontOfSize:14];
     alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
-    alertView.alertContainer.backgroundColor = [UIColor midnightBlueColor];
-    alertView.defaultButtonColor = [UIColor cloudsColor];
-    alertView.defaultButtonShadowColor = [UIColor asbestosColor];
+    alertView.alertContainer.backgroundColor = [UIColor blackColor];
+    alertView.defaultButtonColor = [UIColor carrotColor];
+    alertView.defaultButtonShadowColor = [UIColor pumpkinColor];
     alertView.defaultButtonFont = [UIFont boldFlatFontOfSize:16];
-    alertView.defaultButtonTitleColor = [UIColor asbestosColor];
+    alertView.defaultButtonTitleColor = [UIColor whiteColor];
     alertView.tag = kFAILURE_ALERTVIEW;
     [alertView show];
     

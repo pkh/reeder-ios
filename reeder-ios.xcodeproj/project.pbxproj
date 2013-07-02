@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05774CDC09E24459AC71C946 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 972FF7A5F6E247E4A6B75B3F /* libPods.a */; };
+		7F0CDA8217838AF800784BB4 /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0CDA8117838AF800784BB4 /* UIViewController+JASidePanel.m */; };
 		7F1C8E89177A482F0054395F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1C8E82177A482F0054395F /* LoginViewController.m */; };
 		7F1C8E8A177A482F0054395F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1C8E85177A482F0054395F /* User.m */; };
 		7F20BAC517838035004BB7DC /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F20BAC417838035004BB7DC /* JASidePanelController.m */; };
@@ -38,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		60C05D0FB8894529A8618F42 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		7F0CDA8017838AF800784BB4 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
+		7F0CDA8117838AF800784BB4 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
 		7F1C8E81177A482F0054395F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		7F1C8E82177A482F0054395F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		7F1C8E84177A482F0054395F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -138,10 +141,10 @@
 		7F1C8E86177A482F0054395F /* PrimaryControllers */ = {
 			isa = PBXGroup;
 			children = (
-				7F4C7620177E1791006CD663 /* PostsViewController.h */,
-				7F4C7621177E1791006CD663 /* PostsViewController.m */,
 				7FA37CC1177DEA2600EA96C2 /* SliderMenuViewController.h */,
 				7FA37CC2177DEA2600EA96C2 /* SliderMenuViewController.m */,
+				7F4C7620177E1791006CD663 /* PostsViewController.h */,
+				7F4C7621177E1791006CD663 /* PostsViewController.m */,
 				7FE6ABA5177B5F0B00780252 /* SettingsViewController.h */,
 				7FE6ABA6177B5F0B00780252 /* SettingsViewController.m */,
 				7FD4A8D5177B873400715E02 /* AddFeedViewController.h */,
@@ -157,6 +160,8 @@
 			children = (
 				7F20BAC317838035004BB7DC /* JASidePanelController.h */,
 				7F20BAC417838035004BB7DC /* JASidePanelController.m */,
+				7F0CDA8017838AF800784BB4 /* UIViewController+JASidePanel.h */,
+				7F0CDA8117838AF800784BB4 /* UIViewController+JASidePanel.m */,
 			);
 			path = JASidePanelController;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 				7FA37CC6177DED7300EA96C2 /* ReederRequest.m in Sources */,
 				7F4C7622177E1791006CD663 /* PostsViewController.m in Sources */,
 				7F20BAC517838035004BB7DC /* JASidePanelController.m in Sources */,
+				7F0CDA8217838AF800784BB4 /* UIViewController+JASidePanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
