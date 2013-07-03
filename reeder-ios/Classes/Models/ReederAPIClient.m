@@ -26,6 +26,7 @@
 
 
 
+
 /*
 static ReederAPIClient *reederAPIClient = nil;
 
@@ -135,6 +136,43 @@ static ReederAPIClient *reederAPIClient = nil;
                                                                                         }];
     
     [operation start];
+    
+}
+
+
+
++ (void)loadPostsForFeedID:(NSNumber *)feedID withDelegate:(id)delegate {
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://reeder.doejoapp.com/api/feeds/%@/posts",feedID]];
+    ReederRequest *request = [[ReederRequest alloc] initWithURL:url];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            NSLog(@"Success");
+                                                                                            
+                                                                                            NSArray *recs = [JSON objectForKey:@"records"];
+                                                                                            NSLog(@"recs count: %i",[recs count]);
+                                                                                            NSMutableArray *postsArray = [[NSMutableArray alloc] init];
+                                                                                            for (NSDictionary *dict in recs) {
+                                                                                                Post *p = [[Post alloc] initWithDictionary:dict];
+                                                                                                [postsArray addObject:p];
+                                                                                            }
+                                                                                            
+                                                                                            if ([delegate respondsToSelector:@selector(postsLoadedSuccessfully:)]) {
+                                                                                                [delegate postsLoadedSuccessfully:postsArray];
+                                                                                            }
+                                                                                            
+                                                                                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            NSLog(@"Failure: %@",JSON);
+                                                                                            
+                                                                                            if ([delegate respondsToSelector:@selector(failedToLoadPostsWithError:)]) {
+                                                                                                [delegate failedToLoadPostsWithError:error];
+                                                                                            }
+                                                                                        }];
+    
+    [operation start];
+    
+    
     
 }
 

@@ -266,6 +266,7 @@
     self.viewController.leftPanel = [[SliderMenuViewController alloc] init];
     
     PostsViewController *pvc = [[PostsViewController alloc] init];
+    pvc.postsViewControllerType = RecentPostsVCType;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pvc];
     [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
     self.viewController.centerPanel = navController;    

@@ -10,3 +10,9 @@
 
 
 #define kNAV_BAR_COLOR [UIColor blackColor]
+
+
+typedef enum {
+    RecentPostsVCType = 0,
+    SingleFeedPostsVCType,
+} PostsVCType;

@@ -7,16 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Utils.h"
+
+
+@class Feed;
 
 
 @interface PostsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic) Feed *singleFeed;
+@property PostsVCType postsViewControllerType;
 
 
 - (void)postsLoadedSuccessfully:(NSMutableArray *)posts;
 - (void)failedToLoadPostsWithError:(NSError *)error;
 
-- (void)feedsReloadedSuccessfully;
-- (void)feedReloadFailedWithError:(NSError *)error;
+//- (void)feedsReloadedSuccessfully;
+//- (void)feedReloadFailedWithError:(NSError *)error;
 
 
 @end

@@ -12,7 +12,6 @@
 #import <FlatUIKit/UINavigationBar+FlatUI.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
-#import "Utils.h"
 #import "SettingsViewController.h"
 #import "Feed.h"
 #import "AddFeedViewController.h"
@@ -56,7 +55,6 @@ dispatch_queue_t background_load_queue()
                                       cornerRadius:6];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self setTitle:@"Reeder"];
     
     self.tableView = [[UITableView alloc] init];
     [self.tableView setFrame:kTableViewFrame];
@@ -87,13 +85,25 @@ dispatch_queue_t background_load_queue()
     
     if (!self.dataSource) {
         self.dataSource = [[NSMutableArray alloc] init];
+    } else {
+        [self.dataSource removeAllObjects];
     }
     
-    
-    [SVProgressHUD showWithStatus:@"Loading Recent Posts..." maskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD showWithStatus:@"Loading Posts..." maskType:SVProgressHUDMaskTypeGradient];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [ReederAPIClient loadRecentPostsWithDelegate:self];
     
+    switch (self.postsViewControllerType) {
+        case RecentPostsVCType:
+            self.title = @"Recent Posts";
+            [ReederAPIClient loadRecentPostsWithDelegate:self];
+            break;
+        case SingleFeedPostsVCType:
+            self.title = self.singleFeed.feedTitle;
+            [ReederAPIClient loadPostsForFeedID:[self.singleFeed feedID] withDelegate:self];
+            break;
+        default:
+            break;
+    }
     
 }
 
@@ -202,7 +212,7 @@ dispatch_queue_t background_load_queue()
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
-
+/*
 - (void)feedsReloadedSuccessfully {
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -217,6 +227,6 @@ dispatch_queue_t background_load_queue()
     [self.refreshControl endRefreshing];
     
 }
-
+*/
 
 @end

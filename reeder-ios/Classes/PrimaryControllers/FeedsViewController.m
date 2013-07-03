@@ -15,6 +15,7 @@
 #import "Feed.h"
 #import "AddFeedViewController.h"
 #import "ReederAPIClient.h"
+#import "PostsViewController.h"
 
 
 
@@ -35,6 +36,7 @@
     [super loadView];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    self.title = @"Feeds";
     
     self.tableView = [[UITableView alloc] init];
     [self.tableView setFrame:kTableViewFrame];
@@ -138,6 +140,11 @@
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    PostsViewController *pvc = [[PostsViewController alloc] init];
+    pvc.postsViewControllerType = SingleFeedPostsVCType;
+    pvc.singleFeed = (Feed *)[self.dataSource objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:pvc animated:YES];
+    
     //PostDetailViewController *pdvc = [[PostDetailViewController alloc] init];
     //pdvc.postObject = [self.dataSource objectAtIndex:indexPath.row];
     //[self.navigationController pushViewController:pdvc animated:YES];
@@ -146,32 +153,6 @@
 
 
 #pragma mark - Delegate Callbacks
-/*
-- (void)feedsLoadedSuccessfully:(NSMutableArray *)posts {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
-    
-    [self.dataSource removeAllObjects];
-    [self.dataSource addObjectsFromArray:posts];
-    
-    if (self.refreshControl.isRefreshing) {
-        [self.refreshControl endRefreshing];
-    }
-    
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [SVProgressHUD dismiss];
-    [self.tableView reloadData];
-}
-
-- (void)failedToLoadFeedsWithError:(NSError *)error {
-    NSLog(@"%@: %@",NSStringFromSelector(_cmd), [error localizedDescription]);
-    
-    if (self.refreshControl.isRefreshing) {
-        [self.refreshControl endRefreshing];
-    }
-    [SVProgressHUD dismiss];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-}
-*/
 
 - (void)feedsListLoadedSuccessfully:(NSMutableArray *)feeds {
     

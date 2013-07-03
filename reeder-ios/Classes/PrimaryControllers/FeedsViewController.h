@@ -10,10 +10,9 @@
 
 @interface FeedsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-//- (void)postsLoadedSuccessfully:(NSMutableArray *)posts;
-//- (void)failedToLoadPostsWithError:(NSError *)error;
 
 - (void)feedsListLoadedSuccessfully:(NSMutableArray *)feeds;
 - (void)feedReloadFailedWithError:(NSError *)error;
+
 
 @end

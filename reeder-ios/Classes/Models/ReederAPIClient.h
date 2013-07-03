@@ -21,5 +21,6 @@
 
 + (void)loadFeedsListWithDelegate:(id)delegate;
 
++ (void)loadPostsForFeedID:(NSNumber *)feedID withDelegate:(id)delegate;
 
 @end
