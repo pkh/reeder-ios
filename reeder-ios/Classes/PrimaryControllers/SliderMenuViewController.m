@@ -11,9 +11,15 @@
 #import "UIViewController+JASidePanel.h"
 #import <FlatUIKit/UIColor+FlatUI.h>
 #import <FlatUIKit/UIFont+FlatUI.h>
+#import <FlatUIKit/UINavigationBar+FlatUI.h>
 #import "LoginViewController.h"
 #import "AppDelegate.h"
 #import "User.h"
+#import "PostsViewController.h"
+#import "FeedsViewController.h"
+#import "Utils.h"
+
+
 
 
 
@@ -129,22 +135,31 @@
     
     
     switch (indexPath.row) {
-        case 0:
+        case 0: { // recent posts
+            PostsViewController *pvc = [[PostsViewController alloc] init];
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pvc];
+            [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+            self.sidePanelController.centerPanel = navController;
             [self.sidePanelController toggleLeftPanel:nil];
             break;
-        case 1:
+        }
+        case 1: { // view by feed
+            FeedsViewController *fvc = [[FeedsViewController alloc] init];
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:fvc];
+            [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+            self.sidePanelController.centerPanel = navController;
+            break;
+        }
+        case 2: // bookmarked
 
             break;
-        case 2:
+        case 3: // manage feeds
 
             break;
-        case 3:
+        case 4: // settings
 
             break;
-        case 4:
-
-            break;
-        case 5: {
+        case 5: {   // logout
             FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Log Out" message:@"Are you sure you want to log out?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out",nil];
             
             alertView.titleLabel.textColor = [UIColor whiteColor];

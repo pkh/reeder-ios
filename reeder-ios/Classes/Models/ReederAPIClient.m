@@ -13,6 +13,7 @@
 #import "PostsViewController.h"
 #import "ReederRequest.h"
 #import "AddFeedViewController.h"
+#import "FeedsViewController.h"
 
 
 @implementation ReederAPIClient
@@ -20,7 +21,7 @@
 
 #define kLOAD_RECENT_POSTS_URL @"http://reeder.doejoapp.com/api/posts"
 #define kADD_NEW_FEED_URL @"http://reeder.doejoapp.com/api/feeds/import"
-
+#define kLOAD_FEEDS_LIST_URL @"http://reeder.doejoapp.com/api/feeds"
 
 
 
@@ -101,6 +102,40 @@ static ReederAPIClient *reederAPIClient = nil;
                                                                                         }];
     
     [operation start];
+}
+
+
++ (void)loadFeedsListWithDelegate:(id)delegate {
+    
+    NSURL *url = [NSURL URLWithString:kLOAD_FEEDS_LIST_URL];
+    ReederRequest *request = [[ReederRequest alloc] initWithURL:url];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            NSLog(@"Success");                                                                                            
+                                                                                            
+                                                                                            NSArray *recs = JSON;
+                                                                                            NSLog(@"recs count: %i",[recs count]);
+                                                                                            NSMutableArray *feedsArray = [[NSMutableArray alloc] init];
+                                                                                            for (NSDictionary *dict in recs) {
+                                                                                                Feed *f = [[Feed alloc] initWithDictionary:dict];
+                                                                                                [feedsArray addObject:f];
+                                                                                            }
+                                                                                            
+                                                                                            if ([delegate respondsToSelector:@selector(feedsListLoadedSuccessfully:)]) {
+                                                                                                [delegate feedsListLoadedSuccessfully:feedsArray];
+                                                                                            }
+                                                                                            
+                                                                                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            NSLog(@"Failure: %@",JSON);
+                                                                                            
+                                                                                            if ([delegate respondsToSelector:@selector(feedReloadFailedWithError:)]) {
+                                                                                                [delegate feedReloadFailedWithError:error];
+                                                                                            }
+                                                                                        }];
+    
+    [operation start];
+    
 }
 
 @end

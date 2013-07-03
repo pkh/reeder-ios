@@ -19,6 +19,7 @@
 + (void)loadRecentPostsWithDelegate:(id)delegate;
 + (void)subscribeToNewFeedWithFeedURL:(NSString *)url andDelegate:(id)delegate;
 
++ (void)loadFeedsListWithDelegate:(id)delegate;
 
 
 @end

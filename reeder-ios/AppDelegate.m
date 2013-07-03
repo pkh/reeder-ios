@@ -269,7 +269,7 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pvc];
     [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
     self.viewController.centerPanel = navController;    
-    
+
     self.window.rootViewController = self.viewController;
     
     

@@ -1,62 +1,40 @@
 //
-//  PostsViewController.m
+//  FeedsViewController.m
 //  reeder-ios
 //
-//  Created by Patrick Hanlon on 6/28/13.
+//  Created by Patrick Hanlon on 7/3/13.
 //  Copyright (c) 2013 pkh. All rights reserved.
 //
 
-#import "PostsViewController.h"
+#import "FeedsViewController.h"
 #import <FlatUIKit/UIColor+FlatUI.h>
 #import <FlatUIKit/UIBarButtonItem+FlatUI.h>
 #import <FlatUIKit/UINavigationBar+FlatUI.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-
 #import "Utils.h"
-#import "SettingsViewController.h"
 #import "Feed.h"
 #import "AddFeedViewController.h"
-#import "User.h"
-#import "Post.h"
 #import "ReederAPIClient.h"
-#import "RecentPostsCell.h"
-#import "PostDetailViewController.h"
 
 
 
 #define kTableViewFrame CGRectMake(0, 0, 320, (self.view.frame.size.height-44))
 #define kCellReuseIdentifier @"CellIdentifier"
 
-@interface PostsViewController ()
+
+@interface FeedsViewController ()
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic) NSMutableArray *dataSource;
 @end
 
-@implementation PostsViewController
+@implementation FeedsViewController
 
-
-static dispatch_queue_t reederQueue;
-
-dispatch_queue_t background_load_queue()
+- (void)loadView
 {
-    if (reederQueue == NULL) {
-        reederQueue = dispatch_queue_create("com.pkh.reeder.reederQueue", 0);
-    }
-    return reederQueue;
-}
-
-
-
-- (void)loadView {
     [super loadView];
     
-    [UIBarButtonItem configureFlatButtonsWithColor:[UIColor carrotColor]
-                                  highlightedColor:[UIColor pumpkinColor]
-                                      cornerRadius:6];
-    
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self setTitle:@"Reeder"];
     
     self.tableView = [[UITableView alloc] init];
     [self.tableView setFrame:kTableViewFrame];
@@ -71,30 +49,26 @@ dispatch_queue_t background_load_queue()
     
     [self.view addSubview:self.tableView];
     
+    
 }
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonAction:)];
-    //self.navigationItem.rightBarButtonItem = addButton;
-    
-    [self.tableView registerClass:[RecentPostsCell class] forCellReuseIdentifier:kCellReuseIdentifier];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonAction:)];
+    self.navigationItem.rightBarButtonItem = addButton;
     
     if (!self.dataSource) {
         self.dataSource = [[NSMutableArray alloc] init];
     }
     
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellReuseIdentifier];
     
-    [SVProgressHUD showWithStatus:@"Loading Recent Posts..." maskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD showWithStatus:@"Loading Feeds..." maskType:SVProgressHUDMaskTypeGradient];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [ReederAPIClient loadRecentPostsWithDelegate:self];
-    
-    
+    [ReederAPIClient loadFeedsListWithDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,13 +85,11 @@ dispatch_queue_t background_load_queue()
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    [ReederAPIClient loadRecentPostsWithDelegate:self];
+    [ReederAPIClient loadFeedsListWithDelegate:self];
     
     //[[DataController sharedObject] loadFeedsFromServerWithDelegate:self];
     
 }
-
-
 
 #pragma mark - Bar Button Item Actions
 
@@ -143,21 +115,19 @@ dispatch_queue_t background_load_queue()
 }
 
 
-- (RecentPostsCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = kCellReuseIdentifier;
-    RecentPostsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if (cell == nil) {
-        cell = [[RecentPostsCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
     
-    Post *p = [self.dataSource objectAtIndex:indexPath.row];
-    cell.feedNameLabel.text = p.parentFeed.feedTitle;
-    cell.postTitleLabel.text = p.postTitle;
-    cell.postContentLabel.text = p.postContent;
-    
+    Feed *f = (Feed *)[self.dataSource objectAtIndex:indexPath.row];
+    cell.textLabel.text = f.feedTitle;
+
     return cell;
 }
 
@@ -168,16 +138,16 @@ dispatch_queue_t background_load_queue()
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    PostDetailViewController *pdvc = [[PostDetailViewController alloc] init];
-    pdvc.postObject = [self.dataSource objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:pdvc animated:YES];
+    //PostDetailViewController *pdvc = [[PostDetailViewController alloc] init];
+    //pdvc.postObject = [self.dataSource objectAtIndex:indexPath.row];
+    //[self.navigationController pushViewController:pdvc animated:YES];
     
 }
 
 
 #pragma mark - Delegate Callbacks
-
-- (void)postsLoadedSuccessfully:(NSMutableArray *)posts {
+/*
+- (void)feedsLoadedSuccessfully:(NSMutableArray *)posts {
     NSLog(@"%@",NSStringFromSelector(_cmd));
     
     [self.dataSource removeAllObjects];
@@ -192,7 +162,7 @@ dispatch_queue_t background_load_queue()
     [self.tableView reloadData];
 }
 
-- (void)failedToLoadPostsWithError:(NSError *)error {
+- (void)failedToLoadFeedsWithError:(NSError *)error {
     NSLog(@"%@: %@",NSStringFromSelector(_cmd), [error localizedDescription]);
     
     if (self.refreshControl.isRefreshing) {
@@ -201,20 +171,33 @@ dispatch_queue_t background_load_queue()
     [SVProgressHUD dismiss];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
+*/
 
-
-- (void)feedsReloadedSuccessfully {
+- (void)feedsListLoadedSuccessfully:(NSMutableArray *)feeds {
+    
+    NSLog(@"%@",NSStringFromSelector(_cmd));
+    
+    [self.dataSource removeAllObjects];
+    [self.dataSource addObjectsFromArray:feeds];
+    
+    if (self.refreshControl.isRefreshing) {
+        [self.refreshControl endRefreshing];
+    }
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [self.refreshControl endRefreshing];
-    
+    [SVProgressHUD dismiss];
     [self.tableView reloadData];
     
 }
 
 - (void)feedReloadFailedWithError:(NSError *)error {
+    NSLog(@"%@: %@",NSStringFromSelector(_cmd), [error localizedDescription]);
+    
+    if (self.refreshControl.isRefreshing) {
+        [self.refreshControl endRefreshing];
+    }
+    [SVProgressHUD dismiss];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [self.refreshControl endRefreshing];
     
 }
 
