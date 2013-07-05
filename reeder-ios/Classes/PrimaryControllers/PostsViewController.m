@@ -49,11 +49,11 @@ dispatch_queue_t background_load_queue()
 
 - (void)loadView {
     [super loadView];
-    
+    /*
     [UIBarButtonItem configureFlatButtonsWithColor:[UIColor carrotColor]
                                   highlightedColor:[UIColor pumpkinColor]
                                       cornerRadius:6];
-    
+    */
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     self.tableView = [[UITableView alloc] init];
@@ -64,7 +64,7 @@ dispatch_queue_t background_load_queue()
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.refreshControl setTintColor:[UIColor blackColor]];
+    //[self.refreshControl setTintColor:[UIColor blackColor]];
     [self.tableView addSubview:self.refreshControl];
     
     [self.view addSubview:self.tableView];
@@ -139,7 +139,7 @@ dispatch_queue_t background_load_queue()
     
     AddFeedViewController *afvc = [[AddFeedViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:afvc];
-    [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+    //[navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:navController animated:YES completion:nil];
     

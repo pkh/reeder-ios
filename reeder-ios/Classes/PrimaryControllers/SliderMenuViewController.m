@@ -18,7 +18,7 @@
 #import "PostsViewController.h"
 #import "FeedsViewController.h"
 #import "Utils.h"
-
+#import "SettingsViewController.h"
 
 
 
@@ -36,13 +36,13 @@
 - (void)loadView {
     [super loadView];
     
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.tableView = [[UITableView alloc] init];
-    [self.tableView setFrame:CGRectMake(0, 44, 320, (60*6))];
-    [self.tableView setBackgroundColor:[UIColor blackColor]];
+    [self.tableView setFrame:CGRectMake(0, 0, 320, (60*6))];
+    //[self.tableView setBackgroundColor:[UIColor blackColor]];
     //[self.tableView setSeparatorColor:[UIColor midnightBlueColor]];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    //[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView setDataSource:self];
     [self.tableView setDelegate:self];
     [self.tableView setRowHeight:60];
@@ -112,16 +112,16 @@
     }
     
     
-    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    //[cell.textLabel setTextColor:[UIColor whiteColor]];
     [cell.textLabel setBackgroundColor:[UIColor clearColor]];
-    [cell.contentView setBackgroundColor:[UIColor colorWithRed:(20.0/255.0) green:(20.0/255.0) blue:(20.0/255.0) alpha:1.0]];
+    //[cell.contentView setBackgroundColor:[UIColor colorWithRed:(20.0/255.0) green:(20.0/255.0) blue:(20.0/255.0) alpha:1.0]];
     [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
-    
+    /*
     UIView *orangeBarView = [[UIView alloc] init];
     [orangeBarView setFrame:CGRectMake(2, 10, 3, 40)];
     [orangeBarView setBackgroundColor:[UIColor pumpkinColor]];
     [cell.contentView addSubview:orangeBarView];
-    
+    */
     return cell;
 }
 
@@ -138,7 +138,7 @@
         case 0: { // recent posts
             PostsViewController *pvc = [[PostsViewController alloc] init];
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pvc];
-            [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+            //[navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
             self.sidePanelController.centerPanel = navController;
             [self.sidePanelController toggleLeftPanel:nil];
             break;
@@ -146,7 +146,7 @@
         case 1: { // view by feed
             FeedsViewController *fvc = [[FeedsViewController alloc] init];
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:fvc];
-            [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+            //[navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
             self.sidePanelController.centerPanel = navController;
             break;
         }
@@ -154,17 +154,21 @@
             PostsViewController *pvc = [[PostsViewController alloc] init];
             pvc.postsViewControllerType = BookmakedPostsVCType;
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pvc];
-            [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+            //[navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
             self.sidePanelController.centerPanel = navController;
             [self.sidePanelController toggleLeftPanel:nil];
             break;
         }
         case 3: // manage feeds
-
+#warning implement manage feeds!
             break;
-        case 4: // settings
-
+        case 4: { // settings
+            SettingsViewController *svc = [[SettingsViewController alloc] init];
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:svc];
+            //[navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+            self.sidePanelController.centerPanel = navController;
             break;
+        }
         case 5: {   // logout
             FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Log Out" message:@"Are you sure you want to log out?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out",nil];
             

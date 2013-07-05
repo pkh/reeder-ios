@@ -90,13 +90,19 @@
     self.postContentView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0);
     [self.view addSubview:self.postContentView];
     
-    [self.navigationController setToolbarHidden:NO];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [self.navigationController setToolbarHidden:NO];
+    UIBarButtonItem *bookmarkButton = [[UIBarButtonItem alloc] initWithTitle:@"Bookmark" style:UIBarButtonItemStyleBordered target:self action:@selector(bookmarkButtonAction:)];
+    UIBarButtonItem *markReadButton = [[UIBarButtonItem alloc] initWithTitle:@"Read/Unread" style:UIBarButtonItemStyleBordered target:self action:@selector(markReadButtonAction:)];
+    [self.navigationController.toolbar setItems:@[bookmarkButton, markReadButton]];
+    
     self.postDateLabel.text = [NSString stringWithFormat:@"%@",self.postObject.postPublishedDate];
     self.postTitleLabel.text = self.postObject.postTitle;
     self.postFeedNameLabel.text = self.postObject.parentFeed.feedTitle;
@@ -128,6 +134,8 @@
     [self.navigationController setToolbarHidden:YES];
 }
 
+
+#pragma mark - text parsing and events
 
 - (NSString *)parseHTMLToDisplayableText:(NSString *)htmlText {
     
@@ -162,10 +170,21 @@
     
 }
 
-#pragma mark - Events
 
 - (void)linkButtonClicked:(DTLinkButton *)sender {
     [[UIApplication sharedApplication] openURL:sender.URL];
 }
+
+
+#pragma mark - Bar Button Actions
+
+- (void)bookmarkButtonAction:(id)sender {
+    
+}
+
+- (void)markReadButtonAction:(id)sender {
+    
+}
+
 
 @end

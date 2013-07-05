@@ -1,5 +1,3 @@
-- Add bookmarked posts view
-
 - Add ability to mark posts as read or bookmarked
 
 - Customize cells for "View by Feed" tableview

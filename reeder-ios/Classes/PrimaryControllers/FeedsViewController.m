@@ -46,7 +46,7 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.refreshControl setTintColor:[UIColor blackColor]];
+    //[self.refreshControl setTintColor:[UIColor blackColor]];
     [self.tableView addSubview:self.refreshControl];
     
     [self.view addSubview:self.tableView];
@@ -99,7 +99,7 @@
     
     AddFeedViewController *afvc = [[AddFeedViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:afvc];
-    [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+    //[navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:navController animated:YES completion:nil];
     
