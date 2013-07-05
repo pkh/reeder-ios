@@ -23,4 +23,6 @@
 
 + (void)loadPostsForFeedID:(NSNumber *)feedID withDelegate:(id)delegate;
 
++ (void)loadBookmarkedPostsWithDelegate:(id)delegate;
+
 @end

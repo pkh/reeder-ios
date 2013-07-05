@@ -101,6 +101,10 @@ dispatch_queue_t background_load_queue()
             self.title = self.singleFeed.feedTitle;
             [ReederAPIClient loadPostsForFeedID:[self.singleFeed feedID] withDelegate:self];
             break;
+        case BookmakedPostsVCType:
+            self.title = @"Bookmarked";
+            [ReederAPIClient loadBookmarkedPostsWithDelegate:self];
+            break;
         default:
             break;
     }

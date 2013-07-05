@@ -13,6 +13,7 @@
 
 
 typedef enum {
-    RecentPostsVCType = 0,
+    RecentPostsVCType,
+    BookmakedPostsVCType,
     SingleFeedPostsVCType,
 } PostsVCType;

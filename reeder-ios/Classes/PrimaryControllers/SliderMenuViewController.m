@@ -90,7 +90,7 @@
     // Configure the cell...
     switch (indexPath.row) {
         case 0:
-            cell.textLabel.text = @"Recent Posts";
+            cell.textLabel.text = @"All Recent Posts";
             break;
         case 1:
             cell.textLabel.text = @"View By Feed";
@@ -150,9 +150,15 @@
             self.sidePanelController.centerPanel = navController;
             break;
         }
-        case 2: // bookmarked
-
+        case 2: { // bookmarked
+            PostsViewController *pvc = [[PostsViewController alloc] init];
+            pvc.postsViewControllerType = BookmakedPostsVCType;
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pvc];
+            [navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
+            self.sidePanelController.centerPanel = navController;
+            [self.sidePanelController toggleLeftPanel:nil];
             break;
+        }
         case 3: // manage feeds
 
             break;

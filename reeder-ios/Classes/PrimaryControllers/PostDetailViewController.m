@@ -78,7 +78,8 @@
     
     //self.postContentView = [[UITextView alloc] init];
     self.postContentView = [[DTAttributedTextView alloc] init];
-    [self.postContentView setFrame:CGRectMake(40, 98, 240, (self.view.frame.size.height-44)-98)];
+    [self.postContentView setFrame:CGRectMake(40, 98, 240, (self.view.frame.size.height-44)-98-54)];
+    [self.postContentView setBackgroundColor:[UIColor brownColor]];
     //[self.postContentView setFont:[UIFont flatFontOfSize:16]];
     //[self.postContentView setTextColor:[UIColor blackColor]];
     //[self.postContentView setEditable:NO];
@@ -89,7 +90,7 @@
     self.postContentView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0);
     [self.view addSubview:self.postContentView];
     
-    
+    [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)viewDidLoad
@@ -121,6 +122,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setToolbarHidden:YES];
 }
 
 
