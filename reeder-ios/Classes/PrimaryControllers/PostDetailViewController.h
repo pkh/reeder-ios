@@ -15,4 +15,11 @@
 
 @property (nonatomic) Post *postObject;
 
+
+- (void)postMarkedReadSuccessfully;
+- (void)errorMarkingPostAsRead:(NSError *)error;
+
+- (void)postBookmarkedSuccessfully;
+- (void)errorBookmarkingPost:(NSError *)error;
+
 @end

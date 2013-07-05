@@ -9,8 +9,10 @@
 #import "PostDetailViewController.h"
 #import <FlatUIKit/UIFont+FlatUI.h>
 #import <FlatUIKit/UIColor+FlatUI.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "NSString+HTML.h"
 #import "Feed.h"
+#import "ReederAPIClient.h"
 
 
 
@@ -23,6 +25,10 @@
 @property (nonatomic) UILabel *postFeedNameLabel;
 //@property (nonatomic) UITextView *postContentView;
 @property (nonatomic) DTAttributedTextView *postContentView;
+
+@property (nonatomic) UIBarButtonItem *markReadButton;
+@property (nonatomic) UIBarButtonItem *bookmarkButton;
+@property (nonatomic) UIBarButtonItem *actionBarButton;
 
 @end
 
@@ -79,7 +85,6 @@
     //self.postContentView = [[UITextView alloc] init];
     self.postContentView = [[DTAttributedTextView alloc] init];
     [self.postContentView setFrame:CGRectMake(40, 98, 240, (self.view.frame.size.height-44)-98-54)];
-    [self.postContentView setBackgroundColor:[UIColor brownColor]];
     //[self.postContentView setFont:[UIFont flatFontOfSize:16]];
     //[self.postContentView setTextColor:[UIColor blackColor]];
     //[self.postContentView setEditable:NO];
@@ -99,9 +104,13 @@
 	// Do any additional setup after loading the view.
     
     [self.navigationController setToolbarHidden:NO];
-    UIBarButtonItem *bookmarkButton = [[UIBarButtonItem alloc] initWithTitle:@"Bookmark" style:UIBarButtonItemStyleBordered target:self action:@selector(bookmarkButtonAction:)];
-    UIBarButtonItem *markReadButton = [[UIBarButtonItem alloc] initWithTitle:@"Read/Unread" style:UIBarButtonItemStyleBordered target:self action:@selector(markReadButtonAction:)];
-    [self.navigationController.toolbar setItems:@[bookmarkButton, markReadButton]];
+    self.bookmarkButton = [[UIBarButtonItem alloc] initWithTitle:@"Bookmark" style:UIBarButtonItemStyleBordered target:self action:@selector(bookmarkButtonAction:)];
+    self.markReadButton = [[UIBarButtonItem alloc] initWithTitle:@"Mark Read" style:UIBarButtonItemStyleBordered target:self action:@selector(markReadButtonAction:)];
+    self.actionBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionButtonAction:)];
+    [self.actionBarButton setStyle:UIBarButtonItemStyleBordered];
+    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    self.toolbarItems = @[self.bookmarkButton, spacer, self.actionBarButton, spacer, self.markReadButton];
+    
     
     self.postDateLabel.text = [NSString stringWithFormat:@"%@",self.postObject.postPublishedDate];
     self.postTitleLabel.text = self.postObject.postTitle;
@@ -179,12 +188,56 @@
 #pragma mark - Bar Button Actions
 
 - (void)bookmarkButtonAction:(id)sender {
-    
+    #warning add some check to see if it's already been bookmarked?
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [ReederAPIClient markPostAsBookmarked:[self.postObject postID] withDelegate:self];
 }
 
 - (void)markReadButtonAction:(id)sender {
-    
+
+#warning add some check to see if it's already been read?
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [ReederAPIClient markPostAsRead:[self.postObject postID] withDelegate:self];
+
 }
+
+- (void)actionButtonAction:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.postObject.postURL]];
+}
+
+#pragma mark - Delegate Callbacks
+
+- (void)postMarkedReadSuccessfully {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [SVProgressHUD showSuccessWithStatus:@"Marked As Read!"];
+    [self.markReadButton setEnabled:NO];
+}
+
+
+- (void)errorMarkingPostAsRead:(NSError *)error {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    NSLog(@"error marking read: %@",[error localizedDescription]);
+    [SVProgressHUD showSuccessWithStatus:@"Error Marking Read!"];
+}
+
+
+
+
+
+- (void)postBookmarkedSuccessfully {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [SVProgressHUD showSuccessWithStatus:@"Bookmarked!"];
+    [self.bookmarkButton setEnabled:NO];
+}
+
+
+- (void)errorBookmarkingPost:(NSError *)error {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [SVProgressHUD showSuccessWithStatus:@"Error Bookmarking Post!"];
+}
+
+
+
 
 
 @end

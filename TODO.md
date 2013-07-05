@@ -6,6 +6,8 @@
 
 - Manage feeds
 
+- Status bar shouldn't change to black
+
 
 
 - UI overhaul (color scheme, use icons from the web version)

@@ -438,10 +438,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 60C05D0FB8894529A8618F42 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Hanlon (897EMXJSHW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Hanlon (897EMXJSHW)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "reeder-ios/reeder-ios-Prefix.pch";
 				INFOPLIST_FILE = "reeder-ios/reeder-ios-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "75ADEFE8-448A-47C4-9D06-1D5EDF6149C7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75ADEFE8-448A-47C4-9D06-1D5EDF6149C7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -450,10 +454,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 60C05D0FB8894529A8618F42 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Hanlon (897EMXJSHW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Hanlon (897EMXJSHW)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "reeder-ios/reeder-ios-Prefix.pch";
 				INFOPLIST_FILE = "reeder-ios/reeder-ios-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "75ADEFE8-448A-47C4-9D06-1D5EDF6149C7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75ADEFE8-448A-47C4-9D06-1D5EDF6149C7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

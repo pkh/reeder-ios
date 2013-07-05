@@ -14,6 +14,8 @@
 #import "ReederRequest.h"
 #import "AddFeedViewController.h"
 #import "FeedsViewController.h"
+#import "PostDetailViewController.h"
+
 
 
 @implementation ReederAPIClient
@@ -192,7 +194,7 @@ static ReederAPIClient *reederAPIClient = nil;
 
 + (void)loadBookmarkedPostsWithDelegate:(id)delegate {
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?api_token=%@&bookmarked=true",kPOSTS_URL,[[User currentUser] apiToken]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?bookmarked=true",kPOSTS_URL]];
     ReederRequest *request = [[ReederRequest alloc] initWithURL:url];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
@@ -222,5 +224,64 @@ static ReederAPIClient *reederAPIClient = nil;
     [operation start];
     
 }
+
+
+
+#pragma mark - Make Post as Read/Bookmarked
+
++ (void)markPostAsRead:(NSNumber *)postID withDelegate:(id)delegate {
+ 
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/read",kPOSTS_URL,[postID stringValue]]];
+    ReederRequest *request = [[ReederRequest alloc] initWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            NSLog(@"Success -- %@",NSStringFromSelector(_cmd));
+                                                                                                                                                                                        
+                                                                                            if ([delegate respondsToSelector:@selector(postMarkedReadSuccessfully)]) {
+                                                                                                [delegate postMarkedReadSuccessfully];
+                                                                                            }
+                                                                                            
+                                                                                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            NSLog(@"Failure: %@",JSON);
+                                                                                            
+                                                                                            if ([delegate respondsToSelector:@selector(errorMarkingPostAsRead:)]) {
+                                                                                                [delegate errorMarkingPostAsRead:error];
+                                                                                            }
+                                                                                        }];
+    
+    [operation start];
+    
+}
+
+
++ (void)markPostAsBookmarked:(NSNumber *)postID withDelegate:(id)delegate {
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/bookmark",kPOSTS_URL,[postID stringValue]]];
+    ReederRequest *request = [[ReederRequest alloc] initWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            NSLog(@"Success -- %@",NSStringFromSelector(_cmd));
+                                                                                            
+                                                                                            if ([delegate respondsToSelector:@selector(postBookmarkedSuccessfully)]) {
+                                                                                                [delegate postBookmarkedSuccessfully];
+                                                                                            }
+                                                                                            
+                                                                                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            NSLog(@"Failure: %@",JSON);
+                                                                                            
+                                                                                            if ([delegate respondsToSelector:@selector(errorBookmarkingPost:)]) {
+                                                                                                [delegate errorBookmarkingPost:error];
+                                                                                            }
+                                                                                        }];
+    
+    [operation start];
+    
+}
+
+
 
 @end

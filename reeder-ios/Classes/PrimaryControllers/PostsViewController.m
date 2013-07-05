@@ -89,7 +89,7 @@ dispatch_queue_t background_load_queue()
         [self.dataSource removeAllObjects];
     }
     
-    [SVProgressHUD showWithStatus:@"Loading Posts..." maskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD showWithStatus:@"Loading Posts..."];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     switch (self.postsViewControllerType) {
@@ -125,9 +125,19 @@ dispatch_queue_t background_load_queue()
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    [ReederAPIClient loadRecentPostsWithDelegate:self];
-    
-    //[[DataController sharedObject] loadFeedsFromServerWithDelegate:self];
+    switch (self.postsViewControllerType) {
+        case RecentPostsVCType:
+            [ReederAPIClient loadRecentPostsWithDelegate:self];
+            break;
+        case SingleFeedPostsVCType:
+            [ReederAPIClient loadPostsForFeedID:[self.singleFeed feedID] withDelegate:self];
+            break;
+        case BookmakedPostsVCType:
+            [ReederAPIClient loadBookmarkedPostsWithDelegate:self];
+            break;
+        default:
+            break;
+    }
     
 }
 

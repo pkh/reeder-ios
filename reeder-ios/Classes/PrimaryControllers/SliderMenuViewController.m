@@ -113,7 +113,7 @@
     
     
     //[cell.textLabel setTextColor:[UIColor whiteColor]];
-    [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+    //[cell.textLabel setBackgroundColor:[UIColor clearColor]];
     //[cell.contentView setBackgroundColor:[UIColor colorWithRed:(20.0/255.0) green:(20.0/255.0) blue:(20.0/255.0) alpha:1.0]];
     [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     /*
@@ -130,9 +130,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    
-    
     
     switch (indexPath.row) {
         case 0: { // recent posts
@@ -190,6 +187,8 @@
             break;
     }
     
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 

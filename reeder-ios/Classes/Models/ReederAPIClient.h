@@ -25,4 +25,7 @@
 
 + (void)loadBookmarkedPostsWithDelegate:(id)delegate;
 
++ (void)markPostAsRead:(NSNumber *)postID withDelegate:(id)delegate;
++ (void)markPostAsBookmarked:(NSNumber *)postID withDelegate:(id)delegate;
+
 @end
