@@ -10,12 +10,15 @@
 #import <FlatUIKit/UIColor+FlatUI.h>
 #import <FlatUIKit/UIBarButtonItem+FlatUI.h>
 #import <FlatUIKit/UINavigationBar+FlatUI.h>
+#import <FlatUIKit/UIFont+FlatUI.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "Utils.h"
 #import "Feed.h"
 #import "AddFeedViewController.h"
 #import "ReederAPIClient.h"
 #import "PostsViewController.h"
+#import "FeedCell.h"
+
 
 
 
@@ -42,7 +45,7 @@
     [self.tableView setFrame:kTableViewFrame];
     [self.tableView setDataSource:self];
     [self.tableView setDelegate:self];
-    [self.tableView setRowHeight:80];
+    [self.tableView setRowHeight:44];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -66,7 +69,7 @@
         self.dataSource = [[NSMutableArray alloc] init];
     }
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellReuseIdentifier];
+    [self.tableView registerClass:[FeedCell class] forCellReuseIdentifier:kCellReuseIdentifier];
     
     [SVProgressHUD showWithStatus:@"Loading Feeds..." maskType:SVProgressHUDMaskTypeGradient];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -117,19 +120,25 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (FeedCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = kCellReuseIdentifier;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
     
     Feed *f = (Feed *)[self.dataSource objectAtIndex:indexPath.row];
-    cell.textLabel.text = f.feedTitle;
+    cell.feedTitleLabel.text = f.feedTitle;
+    cell.unreadCountLabel.text = [f.feedUnreadPostsCount stringValue];
+    
+    cell.textLabel.font = [UIFont boldFlatFontOfSize:16];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
+    cell.textLabel.backgroundColor = [UIColor greenColor];
+    
     return cell;
 }
 
