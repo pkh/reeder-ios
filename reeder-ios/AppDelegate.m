@@ -270,7 +270,9 @@
     pvc.postsViewControllerType = RecentPostsVCType;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pvc];
     //[navController.navigationBar configureFlatNavigationBarWithColor:kNAV_BAR_COLOR];
-    self.viewController.centerPanel = navController;    
+    self.viewController.centerPanel = navController;
+    
+    self.viewController.recognizesPanGesture = NO;
 
     self.window.rootViewController = self.viewController;
     

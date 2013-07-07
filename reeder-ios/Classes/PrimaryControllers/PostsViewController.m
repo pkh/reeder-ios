@@ -181,7 +181,11 @@ dispatch_queue_t background_load_queue()
     cell.feedNameLabel.text = p.parentFeed.feedTitle;
     cell.postTitleLabel.text = p.postTitle;
     cell.postContentLabel.text = p.postContent;
-    
+    /*
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedWithRecognizer:)];
+    [swipeGesture setDirection:UISwipeGestureRecognizerDirectionRight];
+    [cell addGestureRecognizer:swipeGesture];
+    */
     return cell;
 }
 
@@ -242,5 +246,24 @@ dispatch_queue_t background_load_queue()
     
 }
 */
+
+
+#pragma mark - Swipe Recognizer
+
+- (void)swipedWithRecognizer:(UIGestureRecognizer *)recognizer {
+    NSLog(@"swipe");
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        NSLog(@"swipe - ended");
+    }
+    
+    
+}
+
+
+
+
+
+
 
 @end
