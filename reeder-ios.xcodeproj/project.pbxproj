@@ -37,6 +37,7 @@
 		7FEF4448177CD1AB00EB7206 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF4447177CD1AB00EB7206 /* Post.m */; };
 		7FEF444E177CDC9900EB7206 /* ReederAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF444D177CDC9900EB7206 /* ReederAPIClient.m */; };
 		7FEF4454177CF49A00EB7206 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF4453177CF49A00EB7206 /* PostDetailViewController.m */; };
+		7FEF8EC6178B4824005E04A2 /* PostHeaderContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF8EC5178B4824005E04A2 /* PostHeaderContainerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,8 @@
 		7FEF444D177CDC9900EB7206 /* ReederAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReederAPIClient.m; sourceTree = "<group>"; };
 		7FEF4452177CF49A00EB7206 /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
 		7FEF4453177CF49A00EB7206 /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
+		7FEF8EC4178B4824005E04A2 /* PostHeaderContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostHeaderContainerView.h; sourceTree = "<group>"; };
+		7FEF8EC5178B4824005E04A2 /* PostHeaderContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostHeaderContainerView.m; sourceTree = "<group>"; };
 		972FF7A5F6E247E4A6B75B3F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -248,6 +251,8 @@
 				7FA37CBF177DE87500EA96C2 /* RecentPostsCell.m */,
 				7F7C8D24178934AA00F7FB63 /* FeedCell.h */,
 				7F7C8D25178934AA00F7FB63 /* FeedCell.m */,
+				7FEF8EC4178B4824005E04A2 /* PostHeaderContainerView.h */,
+				7FEF8EC5178B4824005E04A2 /* PostHeaderContainerView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 				7F0CDA8217838AF800784BB4 /* UIViewController+JASidePanel.m in Sources */,
 				7FCAD7D1178483E800283454 /* FeedsViewController.m in Sources */,
 				7F7C8D26178934AA00F7FB63 /* FeedCell.m in Sources */,
+				7FEF8EC6178B4824005E04A2 /* PostHeaderContainerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

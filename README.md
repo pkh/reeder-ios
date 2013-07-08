@@ -2,6 +2,7 @@
 
 iOS client application to the Reeder RSS reader.
 
+http://reeder.io
 https://github.com/sosedoff/reeder
 
 ## Requirements
