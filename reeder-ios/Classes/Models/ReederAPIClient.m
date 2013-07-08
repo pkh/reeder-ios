@@ -15,6 +15,7 @@
 #import "AddFeedViewController.h"
 #import "FeedsViewController.h"
 #import "PostDetailViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 
 
@@ -238,7 +239,7 @@ static ReederAPIClient *reederAPIClient = nil;
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             NSLog(@"Success -- %@",NSStringFromSelector(_cmd));
-                                                                                                                                                                                        
+                                                                                            
                                                                                             if ([delegate respondsToSelector:@selector(postMarkedReadSuccessfully)]) {
                                                                                                 [delegate postMarkedReadSuccessfully];
                                                                                             }
@@ -248,6 +249,8 @@ static ReederAPIClient *reederAPIClient = nil;
                                                                                             
                                                                                             if ([delegate respondsToSelector:@selector(errorMarkingPostAsRead:)]) {
                                                                                                 [delegate errorMarkingPostAsRead:error];
+                                                                                            } else if (delegate == nil) {
+                                                                                                [SVProgressHUD showErrorWithStatus:@"Error Marking Read!"];
                                                                                             }
                                                                                         }];
     
@@ -276,6 +279,7 @@ static ReederAPIClient *reederAPIClient = nil;
                                                                                             if ([delegate respondsToSelector:@selector(errorBookmarkingPost:)]) {
                                                                                                 [delegate errorBookmarkingPost:error];
                                                                                             }
+                                         
                                                                                         }];
     
     [operation start];

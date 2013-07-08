@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Utils.h"
-
+#import "PostCellActionDelegate.h"
 
 @class Feed;
 
 
-@interface PostsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface PostsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, PostCellActionDelegate>
 
 @property (nonatomic) Feed *singleFeed;
 @property PostsVCType postsViewControllerType;

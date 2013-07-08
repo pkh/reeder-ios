@@ -37,7 +37,11 @@
         self.postURL = [dict objectForKey:@"url"];
         self.postContent = [dict objectForKey:@"content"];
         self.postPublishedDate = [dict objectForKey:@"published_at"];
-        self.postReadDate = [dict objectForKey:@"read_at"];
+        if ([dict objectForKey:@"read_at"] == [NSNull null]) {
+            self.postReadDate = nil;
+        } else {
+            self.postReadDate = [dict objectForKey:@"read_at"];
+        }
         self.postBookmarked = [dict objectForKey:@"bookmarked"];
         self.parentFeed = [[Feed alloc] initWithDictionary:[dict objectForKey:@"feed"]];
         

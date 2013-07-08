@@ -67,6 +67,7 @@
 		7F761B8A17779C3F00554C0F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		7F7C8D24178934AA00F7FB63 /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
 		7F7C8D25178934AA00F7FB63 /* FeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
+		7F8625A5178B0D9C00D12A2C /* PostCellActionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCellActionDelegate.h; sourceTree = "<group>"; };
 		7FA37CBE177DE87500EA96C2 /* RecentPostsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPostsCell.h; sourceTree = "<group>"; };
 		7FA37CBF177DE87500EA96C2 /* RecentPostsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPostsCell.m; sourceTree = "<group>"; };
 		7FA37CC1177DEA2600EA96C2 /* SliderMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderMenuViewController.h; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				7FE6ABA8177B60E400780252 /* Utils.h */,
+				7F8625A5178B0D9C00D12A2C /* PostCellActionDelegate.h */,
 				7F1C8E81177A482F0054395F /* LoginViewController.h */,
 				7F1C8E82177A482F0054395F /* LoginViewController.m */,
 				7F1C8E86177A482F0054395F /* PrimaryControllers */,
@@ -444,14 +446,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 60C05D0FB8894529A8618F42 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Hanlon (897EMXJSHW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Hanlon (897EMXJSHW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Hanlon (6VYAXAHCXZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Hanlon (6VYAXAHCXZ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "reeder-ios/reeder-ios-Prefix.pch";
 				INFOPLIST_FILE = "reeder-ios/reeder-ios-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "75ADEFE8-448A-47C4-9D06-1D5EDF6149C7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75ADEFE8-448A-47C4-9D06-1D5EDF6149C7";
+				PROVISIONING_PROFILE = "249D3497-A21C-40CA-AF10-960946C79BC7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "249D3497-A21C-40CA-AF10-960946C79BC7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -460,14 +462,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 60C05D0FB8894529A8618F42 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Hanlon (897EMXJSHW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Hanlon (897EMXJSHW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Patrick Hanlon (6VYAXAHCXZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Hanlon (6VYAXAHCXZ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "reeder-ios/reeder-ios-Prefix.pch";
 				INFOPLIST_FILE = "reeder-ios/reeder-ios-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "75ADEFE8-448A-47C4-9D06-1D5EDF6149C7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75ADEFE8-448A-47C4-9D06-1D5EDF6149C7";
+				PROVISIONING_PROFILE = "249D3497-A21C-40CA-AF10-960946C79BC7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "249D3497-A21C-40CA-AF10-960946C79BC7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -21,8 +21,6 @@
 @property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property BOOL allowClose;
 
-@property (nonatomic) UILabel *markReadLabel;
-
 @end
 
 
@@ -35,6 +33,8 @@
         // Initialization code
         
         [self.contentView setBackgroundColor:[UIColor whiteColor]];
+        
+        self.postID = [[NSNumber alloc] init];
         
         self.feedNameLabel = [[UILabel alloc] init];
         [self.feedNameLabel setFrame:CGRectMake(kROOT_CONTENTVIEW_X_COORD, 3, 210, 16)];
@@ -64,7 +64,7 @@
         [self.markReadLabel setTextColor:[UIColor whiteColor]];
         [self.markReadLabel setText:@"Mark Read"];
         [self.markReadLabel setAlpha:0];
-        [self addSubview:self.markReadLabel];
+        //[self addSubview:self.markReadLabel];
         
         
         self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureHandler:)];
@@ -102,7 +102,11 @@
         
     } else if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateChanged) {
         
-        if (self.markReadLabel.alpha <= 1.0) {
+        if (![self.subviews containsObject:self.markReadLabel]) {
+            [self addSubview:self.markReadLabel];
+        }
+        
+        if (self.markReadLabel.alpha <= 1.0 && panPercentage > 0.10) {
             self.markReadLabel.alpha = (panPercentage * 2);
         }
         
@@ -136,10 +140,14 @@
         //_currentImageName = [self imageNameWithPercentage:percentage];
         
         percentage = panPercentage;
-        if (percentage < 0.40f || percentage > 0.99f) {
+        if (percentage < 0.60f || percentage > 0.99f) {
             [self bounceToOrigin];
         } else {
-            [self bounceToOpen];
+            //[self bounceToOpen];
+            
+            [self.markReadLabel removeFromSuperview];
+            [self.delegate markCellAsRead:self];
+            
         }
         
     }
@@ -235,6 +243,7 @@
                                           completion:^(BOOL finished2) {
                                               [self.contentView setAlpha:1.0];
                                               //self.isSlidAside = NO;
+                                              [self.markReadLabel removeFromSuperview];
                                               [self setSelectionStyle:UITableViewCellSelectionStyleGray];
                                           }];
                      }];

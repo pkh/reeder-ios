@@ -177,10 +177,14 @@ dispatch_queue_t background_load_queue()
     
     // Configure the cell...
     
+    cell.delegate = self;
+    
     Post *p = [self.dataSource objectAtIndex:indexPath.row];
     cell.feedNameLabel.text = p.parentFeed.feedTitle;
     cell.postTitleLabel.text = p.postTitle;
     cell.postContentLabel.text = p.postContent;
+    cell.postID = p.postID;
+    
     /*
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedWithRecognizer:)];
     [swipeGesture setDirection:UISwipeGestureRecognizerDirectionRight];
@@ -209,7 +213,18 @@ dispatch_queue_t background_load_queue()
     NSLog(@"%@",NSStringFromSelector(_cmd));
     
     [self.dataSource removeAllObjects];
-    [self.dataSource addObjectsFromArray:posts];
+    
+    NSLog(@"BEFORE--Posts: %i",[posts count]);
+    
+    // filter out READ items
+    for (Post *p in posts) {
+        if (p.postReadDate == nil) {
+            [self.dataSource addObject:p];
+        }
+    }
+    
+    NSLog(@"AFTER--dataSource: %i",[self.dataSource count]);
+    //[self.dataSource addObjectsFromArray:posts];
     
     if (self.refreshControl.isRefreshing) {
         [self.refreshControl endRefreshing];
@@ -261,8 +276,30 @@ dispatch_queue_t background_load_queue()
 }
 
 
+#pragma mark - PostCellActionDelegate
 
-
+- (void)markCellAsRead:(RecentPostsCell *)cell {
+    
+    NSLog(@"BEFORE -- self.dataSource: %i",[self.dataSource count]);
+    
+    NSInteger count = [self.dataSource count];
+    for (int x = 0; x < count; ++x) {
+        Post *p = [self.dataSource objectAtIndex:x];
+        if ([[cell postID] isEqualToNumber:p.postID]) {
+            [self.dataSource removeObjectAtIndex:x];
+            break;
+        }
+    }
+    
+    NSLog(@"AFTER -- self.dataSource: %i",[self.dataSource count]);
+    
+    NSIndexPath *idxPath = [self.tableView indexPathForCell:cell];
+    [self.tableView deleteRowsAtIndexPaths:@[idxPath] withRowAnimation:UITableViewRowAnimationRight];
+    
+    NSLog(@"Marking Post %@ as Read",[[cell postID] stringValue]);
+    [ReederAPIClient markPostAsRead:cell.postID withDelegate:nil];
+    
+}
 
 
 
