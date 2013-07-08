@@ -63,13 +63,20 @@
     [self.postFeedNameLabel setTextColor:[UIColor darkGrayColor]];
     [self.view addSubview:self.postFeedNameLabel];
     
+    
     self.postTitleLabel = [[UILabel alloc] init];
+    
+    CGSize sizeForTitle = [self.postObject.postTitle sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:CGSizeMake(300, 150) lineBreakMode:NSLineBreakByWordWrapping];
     [self.postTitleLabel setFrame:CGRectMake(10, 48, 300, 50)];
+    CGRect titleRect = self.postTitleLabel.frame;
+    titleRect.size.height = sizeForTitle.height;
+    self.postTitleLabel.frame = titleRect;
+    
     [self.postTitleLabel setTextAlignment:NSTextAlignmentCenter];
     [self.postTitleLabel setBackgroundColor:[UIColor cloudsColor]];
-    [self.postTitleLabel setFont:[UIFont boldFlatFontOfSize:16]];
-    [self.postTitleLabel setNumberOfLines:3];
-    [self.postTitleLabel setAdjustsFontSizeToFitWidth:YES];
+    [self.postTitleLabel setFont:[UIFont boldFlatFontOfSize:20]];
+    [self.postTitleLabel setNumberOfLines:0];
+    //[self.postTitleLabel setAdjustsFontSizeToFitWidth:YES];
     [self.postTitleLabel setLineBreakMode:NSLineBreakByWordWrapping];
     [self.postTitleLabel setTextColor:[UIColor blackColor]];
     [self.view addSubview:self.postTitleLabel];
@@ -84,7 +91,7 @@
     
     //self.postContentView = [[UITextView alloc] init];
     self.postContentView = [[DTAttributedTextView alloc] init];
-    [self.postContentView setFrame:CGRectMake(40, 98, 240, (self.view.frame.size.height-44)-98-54)];
+    [self.postContentView setFrame:CGRectMake(10, (48 + self.postTitleLabel.frame.size.height), 300, (self.view.frame.size.height-88)-self.postTitleLabel.frame.size.height-48)];
     //[self.postContentView setFont:[UIFont flatFontOfSize:16]];
     //[self.postContentView setTextColor:[UIColor blackColor]];
     //[self.postContentView setEditable:NO];
@@ -92,7 +99,7 @@
     self.postContentView.textDelegate = self;
     self.postContentView.directionalLockEnabled = YES;
     self.postContentView.showsHorizontalScrollIndicator = NO;
-    self.postContentView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0);
+    self.postContentView.contentInset = UIEdgeInsetsMake(8, 0, 8, 0);
     [self.view addSubview:self.postContentView];
     
     
@@ -119,8 +126,9 @@
     
     NSData *contentData = [self.postObject.postContent dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSDictionary *builderOptions = @{DTDefaultFontFamily: @"Helvetica",
-                                     DTUseiOS6Attributes: @YES};
+    NSDictionary *builderOptions = @{DTDefaultFontFamily : @"Helvetica",
+                                     DTDefaultFontSize : @(16),
+                                     DTUseiOS6Attributes : @YES};
     
     DTHTMLAttributedStringBuilder *stringBuilder = [[DTHTMLAttributedStringBuilder alloc] initWithHTML:contentData
                                                                                                options:builderOptions
