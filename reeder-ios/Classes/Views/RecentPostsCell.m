@@ -110,18 +110,9 @@
             self.markReadLabel.alpha = (panPercentage * 2);
         }
         
-        /*
-        if (self.userInfoViewContainer.alpha != 1.0) {
-            [self.userInfoViewContainer setAlpha:1.0];
-        }
-        */
         CGPoint center = {self.contentView.center.x + translation.x, self.contentView.center.y};
         if (panPercentage < 0.40f && self.allowClose == NO) {    // continue animating the slide
-            /*
-            if (![self.delegate shouldDisplayRemoveButton]) {
-                return;
-            }
-            */ 
+
             [self.contentView setCenter:center];
             [self animateWithOffset:CGRectGetMinX(self.contentView.frame)];
             [panRecognizer setTranslation:CGPointZero inView:self];
@@ -140,7 +131,7 @@
         //_currentImageName = [self imageNameWithPercentage:percentage];
         
         percentage = panPercentage;
-        if (percentage < 0.60f || percentage > 0.99f) {
+        if (percentage < 0.50f || percentage > 0.99f) {
             [self bounceToOrigin];
         } else {
             //[self bounceToOpen];

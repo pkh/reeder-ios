@@ -10,12 +10,10 @@
 
 @interface PostHeaderContainerView : UIView
 
+@property (nonatomic) NSString *postDateString;
+@property (nonatomic) NSString *postBlogNameString;
+@property (nonatomic) NSString *postTitleString;
 
-
-@property (nonatomic) UILabel *postDate;
-@property (nonatomic) UILabel *postBlogName;
-@property (nonatomic) UILabel *postTitle;
-
-- (void)redraw;
+- (void)draw;
 
 @end

@@ -11,6 +11,15 @@
 #import <FlatUIKit/UIFont+FlatUI.h>
 
 
+@interface PostHeaderContainerView ()
+
+@property (nonatomic) UILabel *postDate;
+@property (nonatomic) UILabel *postBlogName;
+@property (nonatomic) UILabel *postTitle;
+
+@end
+
+
 @implementation PostHeaderContainerView
 
 - (id)init {
@@ -43,21 +52,14 @@
         [_postTitle setTextColor:[UIColor blackColor]];
         [self addSubview:_postTitle];
         
+        
+        _postDateString = [[NSString alloc] init];
+        _postBlogNameString = [[NSString alloc] init];
+        _postTitleString = [[NSString alloc] init];
+        
     }
     return self;
 }
-
-/*
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-       
-    }
-    return self;
-}
-*/
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -68,40 +70,56 @@
     CGFloat blackLineColor[4] = {0.0f, 0.0f, 0.0f, 1.0f};
     CGContextSetStrokeColor(c, blackLineColor);
     CGContextBeginPath(c);
-    CGContextMoveToPoint(c, 0.0f, 100.0f);
-    CGContextAddLineToPoint(c, 320.0f, 100.0f);
-    CGContextStrokePath(c);
-    /*
-    // Drawing code
-    //
-    // DRAW A HORIZONTAL DIVIDER
-    //
-    UIBezierPath *aPath = [UIBezierPath bezierPath];
-    // Set the starting point of the shape.
-    [aPath moveToPoint:CGPointMake(20.0, 200.0)];
-    [aPath setLineWidth:2.0];
-    [[UIColor blackColor] setStroke];
     
-    // Draw the lines.
-    [aPath addLineToPoint:CGPointMake(100.0, 200.0)];
-    [aPath stroke];
-    [aPath closePath];
-    */ 
+    CGFloat lineYCoord = (_postTitle.frame.origin.y + _postTitle.frame.size.height)+10;
+    
+    CGContextMoveToPoint(c, 10.0f, lineYCoord);
+    CGContextAddLineToPoint(c, 310.0f, lineYCoord);
+    CGContextStrokePath(c);
+
 }
 
 
-- (void)redraw {
+- (void)draw {
     
+    // --------------------
+    // Set label's text
+    // --------------------
+    [_postDate setText:_postDateString];
+    [_postBlogName setText:_postBlogNameString];
+    [_postTitle setText:_postTitleString];
+    
+    // --------------------
+    // Set Frames
+    // --------------------
     [_postDate setFrame:CGRectMake(0, 0, 320, 24)];
     [_postBlogName setFrame:CGRectMake(0, 24, 320, 24)];
     
     
-    
-    CGSize sizeForTitle = [self.postObject.postTitle sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:CGSizeMake(300, 150) lineBreakMode:NSLineBreakByWordWrapping];
+    // --------------------
+    // Size for whatever the title is
+    // --------------------
+    CGSize sizeForTitle = [_postTitleString sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:CGSizeMake(300, 150) lineBreakMode:NSLineBreakByWordWrapping];
     [_postTitle setFrame:CGRectMake(40, 48, 240, 50)];
-    CGRect titleRect = self.postTitleLabel.frame;
+    CGRect titleRect = _postTitle.frame;
     titleRect.size.height = sizeForTitle.height;
     _postTitle.frame = titleRect;
+    NSLog(@"_postTitle height: %f",_postTitle.frame.size.height);
+    
+    
+    // --------------------
+    // Resize "self" to the proper height
+    // --------------------
+    CGFloat measuredHeight = (_postDate.frame.size.height + _postBlogName.frame.size.height + _postTitle.frame.size.height + 10 + 5);
+    CGRect selfFrame = self.frame;
+    selfFrame.size.height = measuredHeight;
+    self.frame = selfFrame;
+    
+    // --------------------
+    // Redraw view
+    // --------------------
+    [self setNeedsDisplay];
+    
 }
 
 @end

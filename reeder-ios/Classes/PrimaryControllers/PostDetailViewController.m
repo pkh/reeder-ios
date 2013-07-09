@@ -19,13 +19,8 @@
 
 @interface PostDetailViewController ()
 
-//@property (nonatomic) UIWebView *contentView;
-
 @property (nonatomic) PostHeaderContainerView *headerContainer;
-@property (nonatomic) UILabel *postDateLabel;
-@property (nonatomic) UILabel *postTitleLabel;
-@property (nonatomic) UILabel *postFeedNameLabel;
-//@property (nonatomic) UITextView *postContentView;
+
 @property (nonatomic) DTAttributedTextView *postContentView;
 
 @property (nonatomic) UIBarButtonItem *markReadButton;
@@ -35,16 +30,6 @@
 @end
 
 @implementation PostDetailViewController
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
 
 
 - (void)loadView {
@@ -55,58 +40,7 @@
     self.headerContainer = [[PostHeaderContainerView alloc] init];
     self.headerContainer.frame = CGRectMake(0, 0, 320, 230);
     [self.view addSubview:self.headerContainer];
-    self.headerContainer.backgroundColor = kSEPIA_COLOR;
-    /*
-    self.postDateLabel = [[UILabel alloc] init];
-    [self.postDateLabel setFrame:CGRectMake(0, 0, 320, 24)];
-    [self.postDateLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.postDateLabel setFont:[UIFont boldFlatFontOfSize:10]];
-    [self.postDateLabel setTextColor:[UIColor darkGrayColor]];
-    [self.postDateLabel setBackgroundColor:[UIColor clearColor]];
-    [self.headerContainer addSubview:self.postDateLabel];
-    
-    self.postFeedNameLabel = [[UILabel alloc] init];
-    [self.postFeedNameLabel setFrame:CGRectMake(0, 24, 320, 24)];
-    [self.postFeedNameLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.postFeedNameLabel setFont:[UIFont boldFlatFontOfSize:12]];
-    [self.postFeedNameLabel setTextColor:[UIColor darkGrayColor]];
-    [self.postFeedNameLabel setBackgroundColor:[UIColor clearColor]];
-    [self.headerContainer addSubview:self.postFeedNameLabel];
-    
-    
-    self.postTitleLabel = [[UILabel alloc] init];
-    
-    CGSize sizeForTitle = [self.postObject.postTitle sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:CGSizeMake(300, 150) lineBreakMode:NSLineBreakByWordWrapping];
-    [self.postTitleLabel setFrame:CGRectMake(40, 48, 240, 50)];
-    CGRect titleRect = self.postTitleLabel.frame;
-    titleRect.size.height = sizeForTitle.height;
-    self.postTitleLabel.frame = titleRect;
-    
-    [self.postTitleLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.postTitleLabel setBackgroundColor:[UIColor clearColor]];
-    [self.postTitleLabel setFont:[UIFont boldFlatFontOfSize:20]];
-    [self.postTitleLabel setNumberOfLines:0];
-    //[self.postTitleLabel setAdjustsFontSizeToFitWidth:YES];
-    [self.postTitleLabel setLineBreakMode:NSLineBreakByWordWrapping];
-    [self.postTitleLabel setTextColor:[UIColor blackColor]];
-    [self.headerContainer addSubview:self.postTitleLabel];
-    
-    [self.view addSubview:self.headerContainer];
-    
-    CGRect headerRect = self.headerContainer.frame;
-    headerRect.size.height = (self.postDateLabel.frame.size.height + self.postFeedNameLabel.frame.size.height + self.postTitleLabel.frame.size.height)+10;
-    self.headerContainer.frame = headerRect;
-    */
-    
-    
-    /*
-    self.contentView = [[UIWebView alloc] init];
-    [self.contentView setFrame:CGRectMake(40, 90, 240, (self.view.frame.size.height-44)-90)];
-    [self.contentView loadHTMLString:self.postObject.postContent baseURL:nil];
-    [self.contentView setScalesPageToFit:YES];
-    [self.view addSubview:self.contentView];
-    */
-    
+    self.headerContainer.backgroundColor = [UIColor whiteColor];
     
     //self.postContentView = [[UITextView alloc] init];
     self.postContentView = [[DTAttributedTextView alloc] init];
@@ -119,7 +53,8 @@
     self.postContentView.directionalLockEnabled = YES;
     self.postContentView.showsHorizontalScrollIndicator = NO;
     self.postContentView.contentInset = UIEdgeInsetsMake(8, 0, 8, 0);
-    //[self.view addSubview:self.postContentView];
+    self.postContentView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.postContentView];
     
     
 }
@@ -137,12 +72,18 @@
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     self.toolbarItems = @[self.bookmarkButton, spacer, self.actionBarButton, spacer, self.markReadButton];
     
+    // --------------------
+    // Set up header container
+    // --------------------
+    self.headerContainer.postDateString = [NSString stringWithFormat:@"%@",self.postObject.postPublishedDate];
+    self.headerContainer.postBlogNameString = self.postObject.parentFeed.feedTitle;
+    self.headerContainer.postTitleString = self.postObject.postTitle;
+
+    [self.headerContainer draw];
     
-    self.postDateLabel.text = [NSString stringWithFormat:@"%@",self.postObject.postPublishedDate];
-    self.postTitleLabel.text = self.postObject.postTitle;
-    self.postFeedNameLabel.text = self.postObject.parentFeed.feedTitle;
-    
-    
+    // --------------------
+    // Set up content view data and frame
+    // --------------------
     NSData *contentData = [self.postObject.postContent dataUsingEncoding:NSUTF8StringEncoding];
     
     NSDictionary *builderOptions = @{DTDefaultFontFamily : @"Georgia",
@@ -155,8 +96,15 @@
     
     self.postContentView.attributedString = [stringBuilder generatedAttributedString];
     
-    //self.postContentView.text = [self parseHTMLToDisplayableText:self.postObject.postContent];
-
+    CGRect contentRect = self.postContentView.frame;
+    CGFloat contentY = self.headerContainer.frame.size.height;
+    CGFloat contentHeight = (self.view.frame.size.height - (self.headerContainer.frame.size.height + 88));
+    contentRect.origin.y = contentY;
+    contentRect.size.height = contentHeight;
+    self.postContentView.frame = contentRect;
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
