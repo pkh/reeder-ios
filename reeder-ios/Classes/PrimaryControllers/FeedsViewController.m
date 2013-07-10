@@ -21,8 +21,6 @@
 
 
 
-
-#define kTableViewFrame CGRectMake(0, 0, 320, (self.view.frame.size.height-44))
 #define kCellReuseIdentifier @"CellIdentifier"
 
 
@@ -38,22 +36,25 @@
 {
     [super loadView];
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    UIView *superview = self.view;
+    
+    [superview setBackgroundColor:[UIColor whiteColor]];
     self.title = @"Feeds";
     
     self.tableView = [[UITableView alloc] init];
-    [self.tableView setFrame:kTableViewFrame];
+    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.tableView setDataSource:self];
     [self.tableView setDelegate:self];
     [self.tableView setRowHeight:44];
-    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-    //[self.refreshControl setTintColor:[UIColor blackColor]];
     [self.tableView addSubview:self.refreshControl];
+    [superview addSubview:self.tableView];
     
-    [self.view addSubview:self.tableView];
+    UITableView *tv = self.tableView;
     
+    [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tv]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tv)]];
+    [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tv]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tv)]];
     
 }
 

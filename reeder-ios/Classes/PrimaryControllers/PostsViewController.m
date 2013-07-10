@@ -23,7 +23,6 @@
 
 
 
-#define kTableViewFrame CGRectMake(0, 0, 320, (self.view.frame.size.height-44))
 #define kCellReuseIdentifier @"CellIdentifier"
 
 @interface PostsViewController ()
@@ -54,20 +53,25 @@ dispatch_queue_t background_load_queue()
                                   highlightedColor:[UIColor pumpkinColor]
                                       cornerRadius:6];
     */
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+  
+    UIView *superview = self.view;
+    
+    [superview setBackgroundColor:[UIColor whiteColor]];
     
     self.tableView = [[UITableView alloc] init];
-    [self.tableView setFrame:kTableViewFrame];
-    [self.tableView setDataSource:self];
-    [self.tableView setDelegate:self];
-    [self.tableView setRowHeight:80];
-    
+    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.rowHeight = 80;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-    //[self.refreshControl setTintColor:[UIColor blackColor]];
     [self.tableView addSubview:self.refreshControl];
+    [superview addSubview:self.tableView];
     
-    [self.view addSubview:self.tableView];
+    UITableView *tv = self.tableView;
+    
+    [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tv]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tv)]];
+    [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tv]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tv)]];
     
 }
 
@@ -217,15 +221,18 @@ dispatch_queue_t background_load_queue()
     
     NSLog(@"BEFORE--Posts: %i",[posts count]);
     
-    // filter out READ items
-    for (Post *p in posts) {
-        if (p.postReadDate == nil) {
-            [self.dataSource addObject:p];
+    if (self.postsViewControllerType != BookmakedPostsVCType) {
+        // filter out READ items IF not bookmarked view
+        for (Post *p in posts) {
+            if (p.postReadDate == nil) {
+                [self.dataSource addObject:p];
+            }
         }
+    } else {
+        [self.dataSource addObjectsFromArray:posts];    // just display ALL for bookmarked view
     }
     
     NSLog(@"AFTER--dataSource: %i",[self.dataSource count]);
-    //[self.dataSource addObjectsFromArray:posts];
     
     if (self.refreshControl.isRefreshing) {
         [self.refreshControl endRefreshing];
