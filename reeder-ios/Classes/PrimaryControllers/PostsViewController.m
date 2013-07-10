@@ -202,6 +202,7 @@ dispatch_queue_t background_load_queue()
     
     PostDetailViewController *pdvc = [[PostDetailViewController alloc] init];
     pdvc.postObject = [self.dataSource objectAtIndex:indexPath.row];
+    pdvc.delegate = self;
     [self.navigationController pushViewController:pdvc animated:YES];
     
 }
@@ -301,6 +302,25 @@ dispatch_queue_t background_load_queue()
     
 }
 
+
+
+#pragma mark - Post Marked Read Delegate
+
+- (void)markPostReadWithID:(NSNumber *)postID {
+    
+    NSInteger count = [self.dataSource count];
+    for (int x = 0; x < count; ++x) {
+        Post *p = [self.dataSource objectAtIndex:x];
+        if ([postID isEqualToNumber:p.postID]) {
+            NSLog(@"marking post \"%@\" as read",p.postTitle);
+            [self.dataSource removeObjectAtIndex:x];
+            break;
+        }
+    }
+    
+    [self.tableView reloadData];
+    
+}
 
 
 @end

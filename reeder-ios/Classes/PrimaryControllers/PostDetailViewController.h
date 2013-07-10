@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "Post.h"
 #import <DTCoreText/DTCoreText.h>
-
+#import "PostMarkedReadDelegate.h"
 
 @interface PostDetailViewController : UIViewController <DTAttributedTextContentViewDelegate>
 
 @property (nonatomic) Post *postObject;
 
+@property (nonatomic, assign) id<PostMarkedReadDelegate> delegate;
 
 - (void)postMarkedReadSuccessfully;
 - (void)errorMarkingPostAsRead:(NSError *)error;

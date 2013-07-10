@@ -42,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		60C05D0FB8894529A8618F42 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		7F001126178DCC0800002194 /* PostMarkedReadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostMarkedReadDelegate.h; sourceTree = "<group>"; };
 		7F0CDA8017838AF800784BB4 /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
 		7F0CDA8117838AF800784BB4 /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
 		7F1C8E81177A482F0054395F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 			children = (
 				7FE6ABA8177B60E400780252 /* Utils.h */,
 				7F8625A5178B0D9C00D12A2C /* PostCellActionDelegate.h */,
+				7F001126178DCC0800002194 /* PostMarkedReadDelegate.h */,
 				7F1C8E81177A482F0054395F /* LoginViewController.h */,
 				7F1C8E82177A482F0054395F /* LoginViewController.m */,
 				7F1C8E86177A482F0054395F /* PrimaryControllers */,

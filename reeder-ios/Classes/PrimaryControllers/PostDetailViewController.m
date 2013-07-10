@@ -159,6 +159,8 @@
 }
 
 
+
+
 #pragma mark - Bar Button Actions
 
 - (void)bookmarkButtonAction:(id)sender {
@@ -184,6 +186,7 @@
 - (void)postMarkedReadSuccessfully {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [SVProgressHUD showSuccessWithStatus:@"Marked As Read!"];
+    [self.delegate markPostReadWithID:self.postObject.postID];
     [self.markReadButton setEnabled:NO];
 }
 
